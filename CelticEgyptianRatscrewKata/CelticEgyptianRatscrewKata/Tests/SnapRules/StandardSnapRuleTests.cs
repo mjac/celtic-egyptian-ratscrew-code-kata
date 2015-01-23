@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CelticEgyptianRatscrewKata.SnapRules;
 using NUnit.Framework;
 
@@ -26,6 +27,22 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
 
             //ASSERT
             Assert.IsFalse(result);
-        } 
+        }
+
+        [Test]
+        public void ReturnsFalseForAStackWithASingleCard()
+        {
+            //ARRANGE
+            var stack = new Stack(new List<Card>
+            {
+                new Card(Suit.Clubs, Rank.Ace)
+            });
+
+            //ACT
+            var result = _standardSnapRule.IsSnapValid(stack);
+
+            //ASSERT
+            Assert.IsFalse(result);
+        }
     }
 }
