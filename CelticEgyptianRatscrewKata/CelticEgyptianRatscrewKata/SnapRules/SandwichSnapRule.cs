@@ -8,6 +8,17 @@
     {
         public bool IsSnapValid(Stack cardStack)
         {
+            Rank? previous = null;
+            Rank? previousPrevious = null;
+            foreach (var card in cardStack)
+            {
+                if (card.Rank == previousPrevious)
+                {
+                    return true;
+                }
+                previousPrevious = previous;
+                previous = card.Rank;
+            }
             return false;
         }
     }
