@@ -18,5 +18,43 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             //ASSERT
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public void ReturnsTrueForABasicSandwichWith3Cards()
+        {
+            //ARRANGE
+            var sandwichSnapRule = new SandwichSnapRule();
+            var cardStack = new Stack(new []
+            {
+                new Card(Suit.Clubs, Rank.Ace), 
+                new Card(Suit.Clubs, Rank.Two), 
+                new Card(Suit.Diamonds, Rank.Ace), 
+            });
+
+            //ACT
+            var result = sandwichSnapRule.IsSnapValid(cardStack);
+
+            //ASSERT
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void ReturnsTrueForABasicSandwichWith3CardsOfSameRank()
+        {
+            //ARRANGE
+            var sandwichSnapRule = new SandwichSnapRule();
+            var cardStack = new Stack(new []
+            {
+                new Card(Suit.Clubs, Rank.Ace), 
+                new Card(Suit.Spades, Rank.Ace), 
+                new Card(Suit.Diamonds, Rank.Ace), 
+            });
+
+            //ACT
+            var result = sandwichSnapRule.IsSnapValid(cardStack);
+
+            //ASSERT
+            Assert.IsTrue(result);
+        }
     }
 }
