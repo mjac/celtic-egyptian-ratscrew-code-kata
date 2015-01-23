@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CelticEgyptianRatscrewKata
 {
@@ -13,16 +14,28 @@ namespace CelticEgyptianRatscrewKata
         }
 
         /// <summary>
-        /// Create a stack with these cards, with the first at the bottom
+        /// Create a stack with these cards, with the first at the top
         /// </summary>
         public Stack(IEnumerable<Card> cards)
         {
-            m_Cards = new Stack<Card>(cards);
+            m_Cards = new Stack<Card>(cards.Reverse());
         }
 
         public void PlaceCardOnTop(Card card)
         {
             m_Cards.Push(card);
+        }
+
+        public bool TryPeekTopCard(out Card card)
+        {
+            if (m_Cards.Any())
+            {
+                card = m_Cards.Peek();
+                return true;
+            }
+
+            card = null;
+            return false;
         }
 
         public IEnumerator<Card> GetEnumerator()

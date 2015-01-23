@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace CelticEgyptianRatscrewKata.Tests
 {
@@ -14,7 +13,7 @@ namespace CelticEgyptianRatscrewKata.Tests
             var cardstack = new Stack();
             cardstack.PlaceCardOnTop(expectedcard);
 
-            var validator = new Validator();
+            var validator = new DarkQueenValidator();
 
             // Act
             var hasSnap = validator.Validate(cardstack);
