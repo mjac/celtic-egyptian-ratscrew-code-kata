@@ -2,7 +2,7 @@
 
 namespace CelticEgyptianRatscrewKata.Tests
 {
-    public class ValidatorTests
+    public class DarkQueenValidatorTests
     {
         private static readonly Card DarkQueenCard = new Card(Suit.Spades, Rank.Queen);
 
