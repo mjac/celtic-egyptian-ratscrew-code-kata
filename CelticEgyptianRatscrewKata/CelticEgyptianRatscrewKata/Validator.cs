@@ -2,7 +2,7 @@
 {
     class Validator
     {
-        private bool Validate(Stack stack)
+        public bool Validate(Stack stack)
         {
             return false;
         }
