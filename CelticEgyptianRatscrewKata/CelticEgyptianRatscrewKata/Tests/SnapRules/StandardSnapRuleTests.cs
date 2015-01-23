@@ -19,11 +19,8 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         [Test]
         public void ReturnsFalseIfEmpty()
         {
-            //ARRANGE
-            var stack = new Stack(Enumerable.Empty<Card>());
-
             //ACT
-            var result = _standardSnapRule.IsSnapValid(stack);
+            var result = _standardSnapRule.IsSnapValid(Stack.Empty());
 
             //ASSERT
             Assert.IsFalse(result);

@@ -12,10 +12,9 @@ namespace CelticEgyptianRatscrewKata.Tests
         {
             //ARRANGE
             var snapValidator = new SnapValidator();
-            var emptyStack = new Stack(Enumerable.Empty<Card>());
 
             //ACT
-            var result = snapValidator.IsSnapValid(emptyStack);
+            var result = snapValidator.IsSnapValid(Stack.Empty());
 
             //ASSERT
             Assert.IsFalse(result);

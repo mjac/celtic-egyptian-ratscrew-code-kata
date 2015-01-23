@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CelticEgyptianRatscrewKata
 {
@@ -20,6 +21,11 @@ namespace CelticEgyptianRatscrewKata
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public static Stack Empty()
+        {
+            return new Stack(Enumerable.Empty<Card>());
         }
     }
 }
