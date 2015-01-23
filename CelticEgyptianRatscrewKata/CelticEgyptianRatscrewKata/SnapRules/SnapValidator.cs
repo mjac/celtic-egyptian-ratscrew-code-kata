@@ -1,4 +1,6 @@
-﻿namespace CelticEgyptianRatscrewKata.SnapRules
+﻿using System.Linq;
+
+namespace CelticEgyptianRatscrewKata.SnapRules
 {
     /// <summary>
     /// Aggregates snap rules to see if any are true.
@@ -20,7 +22,7 @@
         /// </summary>
         public bool IsSnapValid(Stack cardStack)
         {
-            return false;
+            return _rules.Any(r => r.IsSnapValid(cardStack));
         }
     }
 }
