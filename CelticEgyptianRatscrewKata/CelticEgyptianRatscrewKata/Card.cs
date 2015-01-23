@@ -11,15 +11,25 @@
             _rank = rank;
         }
 
+        public Suit Suit
+        {
+            get { return _suit; }
+        }
+
+        public Rank Rank
+        {
+            get { return _rank; }
+        }
+
         public override string ToString()
         {
-            return string.Format("Card {0} of {1}", _rank, _suit);
+            return string.Format("Card {0} of {1}", Rank, Suit);
         }
 
         #region EqualityMembers
         protected bool Equals(Card other)
         {
-            return _suit == other._suit && _rank == other._rank;
+            return Suit == other.Suit && Rank == other.Rank;
         }
 
         public override bool Equals(object obj)
@@ -34,7 +44,7 @@
         {
             unchecked
             {
-                return ((int) _suit*397) ^ (int) _rank;
+                return ((int) Suit*397) ^ (int) Rank;
             }
         }
 #endregion
