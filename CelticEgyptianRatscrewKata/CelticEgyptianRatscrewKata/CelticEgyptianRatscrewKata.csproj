@@ -46,7 +46,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rank.cs" />
     <Compile Include="SnapRules\ISnapRule.cs" />
+    <Compile Include="SnapRules\StandardSnapRule.cs" />
     <Compile Include="Stack.cs" />
+    <Compile Include="Tests\SnapRules\StandardSnapRuleTests.cs" />
     <Compile Include="Tests\StackTests.cs" />
     <Compile Include="Suit.cs" />
   </ItemGroup>
