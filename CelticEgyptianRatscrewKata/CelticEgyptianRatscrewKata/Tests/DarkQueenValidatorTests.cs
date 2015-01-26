@@ -7,6 +7,21 @@ namespace CelticEgyptianRatscrewKata.Tests
         private static readonly Card DarkQueenCard = new Card(Suit.Spades, Rank.Queen);
 
         [Test]
+        public void DoNotDetectDarkQueenOnEmptyStack()
+        {
+            // Arrange
+            var cardstack = new Stack();
+
+            var validator = new DarkQueenValidator();
+
+            // Act
+            var hasSnap = validator.Validate(cardstack);
+
+            // Assert
+            Assert.False(hasSnap);
+        }
+
+        [Test]
         public void DetectDarkQueenOnTop()
         {
             // Arrange
