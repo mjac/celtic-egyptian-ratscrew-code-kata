@@ -1,4 +1,7 @@
-﻿namespace CelticEgyptianRatscrewKata
+﻿using System.Runtime.InteropServices;
+using NUnit.Framework;
+
+namespace CelticEgyptianRatscrewKata
 {
     class SnapValidator : ISnapValidator
     {

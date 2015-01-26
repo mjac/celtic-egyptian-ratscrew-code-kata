@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="CompositeValidator.cs" />
     <Compile Include="DarkQueenValidator.cs" />
     <Compile Include="ISnapValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="SandwichValidator.cs" />
     <Compile Include="Stack.cs" />
     <Compile Include="StandardValidator.cs" />
+    <Compile Include="Tests\CompositeValidatorTests.cs" />
+    <Compile Include="Tests\DummySnapValidator.cs" />
     <Compile Include="Tests\SandwichValidatorTests.cs" />
     <Compile Include="Tests\StackTests.cs" />
     <Compile Include="Suit.cs" />
