@@ -58,7 +58,7 @@
     <Compile Include="Suit.cs" />
     <Compile Include="Tests\DarkQueenValidatorTests.cs" />
     <Compile Include="Tests\StandardValidatorTests.cs" />
-    <Compile Include="SnapValidator.cs" />
+    <Compile Include="SnapValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
