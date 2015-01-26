@@ -16,6 +16,11 @@
             return string.Format("Card {0} of {1}", m_Rank, m_Suit);
         }
 
+        public bool HasSameRank(Card card)
+        {
+            return m_Rank == card.m_Rank;
+        }
+
         #region EqualityMembers
         protected bool Equals(Card other)
         {
@@ -38,5 +43,6 @@
             }
         }
 #endregion
+
     }
 }

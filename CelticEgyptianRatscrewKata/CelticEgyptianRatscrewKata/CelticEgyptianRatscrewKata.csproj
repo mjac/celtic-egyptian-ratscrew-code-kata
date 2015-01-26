@@ -46,9 +46,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rank.cs" />
     <Compile Include="Stack.cs" />
+    <Compile Include="Tests\SandwichValidatorTests.cs" />
     <Compile Include="Tests\StackTests.cs" />
     <Compile Include="Suit.cs" />
     <Compile Include="Tests\DarkQueenValidatorTests.cs" />
+    <Compile Include="Tests\StandardValidatorTests.cs" />
     <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>
