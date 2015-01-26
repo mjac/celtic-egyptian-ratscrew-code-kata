@@ -43,15 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="DarkQueenValidator.cs" />
+    <Compile Include="ISnapValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rank.cs" />
+    <Compile Include="SandwichValidator.cs" />
     <Compile Include="Stack.cs" />
+    <Compile Include="StandardValidator.cs" />
     <Compile Include="Tests\SandwichValidatorTests.cs" />
     <Compile Include="Tests\StackTests.cs" />
     <Compile Include="Suit.cs" />
     <Compile Include="Tests\DarkQueenValidatorTests.cs" />
     <Compile Include="Tests\StandardValidatorTests.cs" />
-    <Compile Include="Validator.cs" />
+    <Compile Include="SnapValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
