@@ -72,7 +72,7 @@ namespace CelticEgyptianRatscrewKata.Tests
 
             var expectedHands = new List<Cards>
                                 {
-                                    Cards.With(new Card(Suit.Clubs, Rank.Ace), new Card(Suit.Clubs, Rank.Three)),
+                                    Cards.With(new Card(Suit.Clubs, Rank.Three), new Card(Suit.Clubs, Rank.Ace)),
                                     Cards.With(new Card(Suit.Clubs, Rank.Two))
                                 };
             CollectionAssert.AreEqual(expectedHands, hands);
