@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace CelticEgyptianRatscrewKata.SnapRules
+﻿namespace CelticEgyptianRatscrewKata.SnapRules
 {
     /// <summary>
     /// Represents a standard snap, i.e. any two adjacent cards have the same rank.

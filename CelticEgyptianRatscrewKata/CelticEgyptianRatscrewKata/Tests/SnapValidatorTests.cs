@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace CelticEgyptianRatscrewKata.Tests
 {
     [TestFixture]
-    public class SnapshotValidatorTests
+    public class SnapValidatorTests
     {
         [Test]
         public void ReturnsFalseIfNoRulesAndNoStack()
