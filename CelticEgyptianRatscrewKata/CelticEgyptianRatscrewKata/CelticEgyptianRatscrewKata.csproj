@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="Game\GameController.cs" />
     <Compile Include="Game\GameState.cs" />
+    <Compile Include="Game\IPlayer.cs" />
     <Compile Include="SnapRules\DarkQueenRule.cs" />
     <Compile Include="Cards.cs" />
     <Compile Include="Dealer.cs" />
