@@ -13,7 +13,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             var sandwichSnapRule = new SandwichSnapRule();
 
             //ACT
-            var result = sandwichSnapRule.IsSnapValid(Stack.Empty());
+            var result = sandwichSnapRule.IsSnapValid(Cards.Empty());
 
             //ASSERT
             Assert.IsFalse(result);
@@ -24,7 +24,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         {
             //ARRANGE
             var sandwichSnapRule = new SandwichSnapRule();
-            var cardStack = new Stack(new []
+            var cardStack = new Cards(new []
             {
                 new Card(Suit.Clubs, Rank.Ace), 
                 new Card(Suit.Clubs, Rank.Two), 
@@ -43,7 +43,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         {
             //ARRANGE
             var sandwichSnapRule = new SandwichSnapRule();
-            var cardStack = new Stack(new []
+            var cardStack = new Cards(new []
             {
                 new Card(Suit.Clubs, Rank.Ace), 
                 new Card(Suit.Spades, Rank.Ace), 

@@ -14,7 +14,7 @@ namespace CelticEgyptianRatscrewKata.Tests
             var snapValidator = new SnapValidator();
 
             //ACT
-            var result = snapValidator.IsSnapValid(Stack.Empty());
+            var result = snapValidator.IsSnapValid(Cards.Empty());
 
             //ASSERT
             Assert.IsFalse(result);
@@ -25,11 +25,11 @@ namespace CelticEgyptianRatscrewKata.Tests
         {
             //ARRANGE
             var alwaysTrueRule = Substitute.For<ISnapRule>();
-            alwaysTrueRule.IsSnapValid(Arg.Any<Stack>()).Returns(true);
+            alwaysTrueRule.IsSnapValid(Arg.Any<Cards>()).Returns(true);
             var snapValidator = new SnapValidator(alwaysTrueRule);
 
             //ACT
-            var result = snapValidator.IsSnapValid(Stack.Empty());
+            var result = snapValidator.IsSnapValid(Cards.Empty());
 
             //ASSERT
             Assert.IsTrue(result);
@@ -39,13 +39,13 @@ namespace CelticEgyptianRatscrewKata.Tests
         public void ReturnsTrueOnlyOnSpecificStack()
         {
             //ARRANGE
-            var cardStack = new Stack(new []
+            var cardStack = new Cards(new []
             {
                 new Card(Suit.Clubs, Rank.Ace) 
             });
 
             var alwaysTrueRule = Substitute.For<ISnapRule>();
-            alwaysTrueRule.IsSnapValid(Arg.Any<Stack>()).Returns(false);
+            alwaysTrueRule.IsSnapValid(Arg.Any<Cards>()).Returns(false);
             alwaysTrueRule.IsSnapValid(cardStack).Returns(true);
 
             var snapValidator = new SnapValidator(alwaysTrueRule);

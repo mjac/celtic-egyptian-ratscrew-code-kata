@@ -6,7 +6,7 @@
     /// </summary>
     public class SandwichSnapRule : ISnapRule
     {
-        public bool IsSnapValid(Stack cardStack)
+        public bool IsSnapValid(Cards cardStack)
         {
             Rank? previous = null;
             Rank? previousPrevious = null;

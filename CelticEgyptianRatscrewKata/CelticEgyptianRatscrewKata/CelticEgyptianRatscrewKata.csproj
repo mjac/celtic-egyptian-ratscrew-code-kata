@@ -57,7 +57,6 @@
     <Compile Include="SnapRules\SandwichSnapRule.cs" />
     <Compile Include="SnapRules\SnapValidator.cs" />
     <Compile Include="SnapRules\StandardSnapRule.cs" />
-    <Compile Include="Stack.cs" />
     <Compile Include="Tests\SnapRules\DarkQueenRuleTests.cs" />
     <Compile Include="Tests\SnapRules\SandwichSnapRuleTests.cs" />
     <Compile Include="Tests\SnapRules\StandardSnapRuleTests.cs" />

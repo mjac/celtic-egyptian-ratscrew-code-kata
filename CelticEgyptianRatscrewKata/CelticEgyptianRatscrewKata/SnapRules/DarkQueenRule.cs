@@ -9,7 +9,7 @@ namespace CelticEgyptianRatscrewKata.SnapRules
     {
         private static readonly Card DarkQueen = new Card(Suit.Spades, Rank.Queen);
 
-        public bool IsSnapValid(Stack cardStack)
+        public bool IsSnapValid(Cards cardStack)
         {
             // Should this be last? Not sure what order the cardStack is in.
             return DarkQueen.Equals(cardStack.FirstOrDefault());

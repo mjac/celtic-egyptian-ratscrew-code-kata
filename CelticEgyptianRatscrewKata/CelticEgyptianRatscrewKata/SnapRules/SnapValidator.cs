@@ -20,7 +20,7 @@ namespace CelticEgyptianRatscrewKata.SnapRules
         /// <summary>
         /// Checks if <paramref name="cardStack"/> has any valid snaps.
         /// </summary>
-        public bool IsSnapValid(Stack cardStack)
+        public bool IsSnapValid(Cards cardStack)
         {
             return _rules.Any(r => r.IsSnapValid(cardStack));
         }

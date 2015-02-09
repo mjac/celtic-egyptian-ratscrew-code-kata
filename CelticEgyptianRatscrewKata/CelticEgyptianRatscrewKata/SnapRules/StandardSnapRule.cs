@@ -5,7 +5,7 @@
     /// </summary>
     public class StandardSnapRule : ISnapRule
     {
-        public bool IsSnapValid(Stack cardStack)
+        public bool IsSnapValid(Cards cardStack)
         {
             Rank? previous = null;
             foreach (var card in cardStack)

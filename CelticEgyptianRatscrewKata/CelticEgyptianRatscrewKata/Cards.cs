@@ -6,43 +6,43 @@ namespace CelticEgyptianRatscrewKata
 {
     public class Cards : IEnumerable<Card>
     {
-        private readonly List<Card> m_Cards;
+        private readonly List<Card> _cards;
 
         public Cards(IEnumerable<Card> cards)
         {
-            m_Cards = new List<Card>(cards);
+            _cards = new List<Card>(cards);
         }
 
         public void AddToTop(Card card)
         {
-            m_Cards.Add(card);
+            _cards.Add(card);
         }
 
         public Card Pop()
         {
-            var first = m_Cards.First();
-            m_Cards.RemoveAt(0);
+            var first = _cards.First();
+            _cards.RemoveAt(0);
             return first;
         }
 
         public Card CardAt(int i)
         {
-            return m_Cards.ElementAt(i);
+            return _cards.ElementAt(i);
         }
 
         public void RemoveCardAt(int i)
         {
-            m_Cards.RemoveAt(i);
+            _cards.RemoveAt(i);
         }
 
         public bool HasCards
         {
-            get { return m_Cards.Count > 0; } 
+            get { return _cards.Count > 0; } 
         }
 
         public IEnumerator<Card> GetEnumerator()
         {
-            return m_Cards.GetEnumerator();
+            return _cards.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -69,7 +69,7 @@ namespace CelticEgyptianRatscrewKata
         {
             var output = "";
 
-            foreach (var card in m_Cards)
+            foreach (var card in _cards)
             {
                 if (!output.Equals("")) output += ", ";
                 output += card;

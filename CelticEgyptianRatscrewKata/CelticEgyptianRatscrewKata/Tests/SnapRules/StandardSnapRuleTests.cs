@@ -20,7 +20,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsFalseIfEmpty()
         {
             //ACT
-            var result = _standardSnapRule.IsSnapValid(Stack.Empty());
+            var result = _standardSnapRule.IsSnapValid(Cards.Empty());
 
             //ASSERT
             Assert.IsFalse(result);
@@ -30,7 +30,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsFalseForAStackWithASingleCard()
         {
             //ARRANGE
-            var stack = new Stack(new List<Card>
+            var stack = new Cards(new List<Card>
             {
                 new Card(Suit.Clubs, Rank.Ace)
             });
@@ -46,7 +46,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsTrueForAStackWithTwoCardsOfTheSameRank()
         {
             //ARRANGE
-            var stack = new Stack(new List<Card>
+            var stack = new Cards(new List<Card>
             {
                 new Card(Suit.Clubs, Rank.Ace),
                 new Card(Suit.Diamonds, Rank.Ace)
@@ -63,7 +63,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsFalseForAStackWithTwoCardsOfDifferingRank()
         {
             //ARRANGE
-            var stack = new Stack(new List<Card>
+            var stack = new Cards(new List<Card>
             {
                 new Card(Suit.Clubs, Rank.Ace),
                 new Card(Suit.Clubs, Rank.Two)
@@ -80,7 +80,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsFalseForAStackWithTwoCardsOfSameRankNotAdjacentToEachOther()
         {
             //ARRANGE
-            var stack = new Stack(new List<Card>
+            var stack = new Cards(new List<Card>
             {
                 new Card(Suit.Clubs, Rank.Ace),
                 new Card(Suit.Clubs, Rank.Two),
@@ -98,7 +98,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsTrueForAStackWithTwoAdjacentCardsOfTheSameRankAreInTheMiddleOfTheStack()
         {
             //ARRANGE
-            var stack = new Stack(new List<Card>
+            var stack = new Cards(new List<Card>
             {
                 new Card(Suit.Clubs, Rank.Two),
                 new Card(Suit.Clubs, Rank.Ace),

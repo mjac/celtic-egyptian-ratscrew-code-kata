@@ -8,6 +8,6 @@
         /// <summary>
         /// Checks whether a snap is valid on the <paramref name="cardStack"/>.
         /// </summary>
-        bool IsSnapValid(Stack cardStack);
+        bool IsSnapValid(Cards cardStack);
     }
 }
