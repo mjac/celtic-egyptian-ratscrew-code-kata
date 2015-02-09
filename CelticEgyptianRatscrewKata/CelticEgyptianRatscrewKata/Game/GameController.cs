@@ -11,14 +11,18 @@ namespace CelticEgyptianRatscrewKata.Game
     public class GameController
     {
         private readonly SnapValidator _snapValidator;
+        private readonly Dealer _dealer;
+        private readonly Shuffler _shuffler;
         private readonly IList<IPlayer> _players;
         private readonly GameState _gameState;
 
-        public GameController(SnapValidator snapValidator)
+        public GameController(SnapValidator snapValidator, Dealer dealer, Shuffler shuffler)
         {
             _players = new List<IPlayer>();
             _gameState = new GameState();
             _snapValidator = snapValidator;
+            _dealer = dealer;
+            _shuffler = shuffler;
         }
 
         public bool AddPlayer(IPlayer player)
