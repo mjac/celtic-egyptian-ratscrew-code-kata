@@ -28,6 +28,8 @@ namespace CelticEgyptianRatscrewKata.Game
             _decks = decks;
         }
 
+        public Cards Stack { get {return new Cards(_stack);} }
+
         /// <summary>
         /// Add the given player to the game with the given deck.
         /// </summary>

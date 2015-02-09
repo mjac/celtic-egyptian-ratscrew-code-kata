@@ -37,5 +37,15 @@ namespace CelticEgyptianRatscrewKata.Game
                 _gameState.PlayCard(player.Name);
             }
         }
+
+        public void AttemptSnap(IPlayer player)
+        {
+            AddPlayer(player);
+
+            if (_snapValidator.IsSnapValid(_gameState.Stack))
+            {
+                _gameState.WinStack(player.Name);
+            }
+        }
     }
 }
