@@ -1,4 +1,5 @@
 ﻿using NSubstitute;
+﻿using CelticEgyptianRatscrewKata.GameSetup;
 using NUnit.Framework;
 
 namespace CelticEgyptianRatscrewKata.Tests

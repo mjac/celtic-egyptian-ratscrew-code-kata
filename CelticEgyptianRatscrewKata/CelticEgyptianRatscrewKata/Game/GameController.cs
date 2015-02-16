@@ -1,6 +1,6 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
 
 namespace CelticEgyptianRatscrewKata.Game
@@ -10,16 +10,16 @@ namespace CelticEgyptianRatscrewKata.Game
     /// </summary>
     public class GameController
     {
-        private readonly SnapValidator _snapValidator;
-        private readonly Dealer _dealer;
-        private readonly Shuffler _shuffler;
+        private readonly ISnapValidator _snapValidator;
+        private readonly IDealer _dealer;
+        private readonly IShuffler _shuffler;
         private readonly IList<IPlayer> _players;
-        private GameState _gameState;
+        private readonly IGameState _gameState;
 
-        public GameController(SnapValidator snapValidator, Dealer dealer, Shuffler shuffler)
+        public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler)
         {
             _players = new List<IPlayer>();
-            _gameState = new GameState();
+            _gameState = gameState;
             _snapValidator = snapValidator;
             _dealer = dealer;
             _shuffler = shuffler;
@@ -46,7 +46,7 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             AddPlayer(player);
 
-            if (_snapValidator.IsSnapValid(_gameState.Stack))
+            if (_snapValidator.CanSnap(_gameState.Stack))
             {
                 _gameState.WinStack(player.Name);
             }
@@ -57,7 +57,7 @@ namespace CelticEgyptianRatscrewKata.Game
         /// </summary>
         public void StartGame(Cards deck)
         {
-            _gameState = new GameState();
+            _gameState.Clear();
 
             var shuffledDeck = _shuffler.Shuffle(deck);
             var decks = _dealer.Deal(_players.Count, shuffledDeck);
@@ -70,8 +70,6 @@ namespace CelticEgyptianRatscrewKata.Game
         public bool TryGetWinner(out IPlayer winner)
         {
             var playersWithCards = _players.Where(p => _gameState.HasCards(p.Name)).ToList();
-
-            if (!_gameState.Stack.Any() && playersWithCards.Count() == 1)
             {
                 winner = playersWithCards.Single();
                 return true;

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace CelticEgyptianRatscrewKata
+namespace CelticEgyptianRatscrewKata.GameSetup
 {
-    public class Shuffler
+    public class Shuffler : IShuffler
     {
         private readonly IRandomNumberGenerator _randomNumberGenerator;
 

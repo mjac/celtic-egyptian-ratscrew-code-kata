@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CelticEgyptianRatscrewKata
+namespace CelticEgyptianRatscrewKata.GameSetup
 {
     class RandomNumberGenerator : IRandomNumberGenerator
     {

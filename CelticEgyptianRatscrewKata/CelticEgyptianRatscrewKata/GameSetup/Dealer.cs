@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace CelticEgyptianRatscrewKata
+namespace CelticEgyptianRatscrewKata.GameSetup
 {
-    public class Dealer
+    public class Dealer : IDealer
     {
         public List<Cards> Deal(int numberOfHands, Cards deck)
         {

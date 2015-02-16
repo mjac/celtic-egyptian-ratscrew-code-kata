@@ -8,7 +8,7 @@ namespace CelticEgyptianRatscrewKata.Game
     /// <summary>
     /// Represents the state of the game at any point.
     /// </summary>
-    public class GameState
+    public class GameState : IGameState
     {
         private readonly Cards _stack;
         private readonly IDictionary<string, Cards> _decks;
@@ -45,8 +45,8 @@ namespace CelticEgyptianRatscrewKata.Game
         /// </summary>
         public void PlayCard(string playerId)
         {
-            Debug.Assert(_decks.ContainsKey(playerId));
-            Debug.Assert(_decks[playerId].Any());
+            if (!_decks.ContainsKey(playerId)) throw new ArgumentException("The selected player doesn't exist");
+            if (!_decks[playerId].Any()) throw new ArgumentException("The selected player doesn't have any cards left");
 
             var topCard = _decks[playerId].Pop();
             _stack.AddToTop(topCard);
@@ -57,18 +57,34 @@ namespace CelticEgyptianRatscrewKata.Game
         /// </summary>
         public void WinStack(string playerId)
         {
-            Debug.Assert(_decks.ContainsKey(playerId));
+            if (!_decks.ContainsKey(playerId)) throw new ArgumentException("The selected player doesn't exist");
 
             foreach (var card in _stack.Reverse())
             {
                 _decks[playerId].AddToBottom(card);
             }
+
+            ClearStack();
+        }
+
+        private void ClearStack()
+        {
+            while (_stack.HasCards)
+            {
+                _stack.RemoveCardAt(0);
+            }
         }
 
         public bool HasCards(string playerId)
         {
-            Debug.Assert(_decks.ContainsKey(playerId));
+            if (!_decks.ContainsKey(playerId)) throw new ArgumentException("The selected player doesn't exist");
             return _decks[playerId].Any();
+        }
+
+        public void Clear()
+        {
+            ClearStack();
+            _decks.Clear();
         }
     }
 }

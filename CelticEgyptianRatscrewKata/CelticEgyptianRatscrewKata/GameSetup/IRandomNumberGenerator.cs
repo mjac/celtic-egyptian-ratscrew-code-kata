@@ -1,4 +1,4 @@
-﻿namespace CelticEgyptianRatscrewKata
+﻿namespace CelticEgyptianRatscrewKata.GameSetup
 {
     public interface IRandomNumberGenerator
     {

@@ -1,13 +1,14 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CelticEgyptianRatscrewKata.SnapRules
 {
     /// <summary>
     /// Aggregates snap rules to see if any are true.
     /// </summary>
-    public class SnapValidator
+    public class SnapValidator : ISnapValidator
     {
-        private readonly ISnapRule[] _rules;
+        private readonly IEnumerable<ISnapRule> _rules;
 
         /// <summary>
         /// Create snap validator that will check against all the given <paramref name="rules"/>
@@ -20,7 +21,7 @@ namespace CelticEgyptianRatscrewKata.SnapRules
         /// <summary>
         /// Checks if <paramref name="cardStack"/> has any valid snaps.
         /// </summary>
-        public bool IsSnapValid(Cards cardStack)
+        public bool CanSnap(Cards cardStack)
         {
             return _rules.Any(r => r.IsSnapValid(cardStack));
         }
