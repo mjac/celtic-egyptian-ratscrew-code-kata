@@ -14,7 +14,7 @@ namespace ConsoleBasedGame
 
             foreach (PlayerInfo playerInfo in playerInfos)
             {
-                game.AddPlayer(new Player(playerInfo.PlayerName));
+                game.AddPlayer(playerInfo);
             }
 
             game.StartGame(GameFactory.CreateFullDeckOfCards());
