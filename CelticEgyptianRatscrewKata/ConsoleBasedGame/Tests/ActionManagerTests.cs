@@ -55,5 +55,19 @@ namespace ConsoleBasedGame.Tests
             // ASSERT
             _gameController.Received(1).AttemptSnap(playerInfo);
         }
+
+        [Test]
+        public void AttemptsToPlayCardWhenPlayCardKeyPressed()
+        {
+            // ARRANGE
+            var playerInfo = new PlayerInfo("playerName", 'a', 'b');
+            _actionManager.Bind(playerInfo);
+
+            // ACT
+            _actionManager.Process(playerInfo.PlayCardKey);
+
+            // ASSERT
+            _gameController.Received(1).PlayCard(playerInfo);
+        }
     }
 }
