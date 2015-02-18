@@ -5,7 +5,7 @@ namespace ConsoleBasedGame
     /// <summary>
     /// Maps key bindings to actions on an <see cref="IGameController"/>.
     /// </summary>
-    public class ActionManager
+    internal class ActionManager
     {
         private readonly IGameController _gameController;
 
