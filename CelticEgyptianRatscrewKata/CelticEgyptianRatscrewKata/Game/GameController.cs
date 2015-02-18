@@ -43,6 +43,16 @@ namespace CelticEgyptianRatscrewKata.Game
                 var playedCard = _gameState.PlayCard(player.Name);
                 _log.Log(string.Format("{0} has played the {1}", player.Name, playedCard));
             }
+            LogGameState();
+        }
+
+        private void LogGameState()
+        {
+            _log.Log(string.Format("Stack ({0}): {1} ", _gameState.Stack.Count(), _gameState.Stack.Any() ? _gameState.Stack.First().ToString() : ""));
+            foreach (var player in _players)
+            {
+                _log.Log(string.Format("{0}: {1} cards", player.Name, _gameState.NumberOfCards(player.Name)));
+            }
         }
 
         public void AttemptSnap(IPlayer player)
@@ -58,6 +68,7 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 _log.Log(string.Format("{0} did not win the stack", player.Name));
             }
+            LogGameState();
         }
 
         /// <summary>
@@ -73,6 +84,7 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 _gameState.AddPlayer(_players[i].Name, decks[i]);
             }
+            LogGameState();
         }
 
         public bool TryGetWinner(out IPlayer winner)

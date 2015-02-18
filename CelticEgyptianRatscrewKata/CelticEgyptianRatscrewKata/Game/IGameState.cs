@@ -34,5 +34,7 @@ namespace CelticEgyptianRatscrewKata.Game
         /// Resets the game state back to its default values.
         /// </summary>
         void Clear();
+
+        int NumberOfCards(string name);
     }
 }
