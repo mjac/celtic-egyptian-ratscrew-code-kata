@@ -40,7 +40,8 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             if (_gameState.HasCards(player.Name))
             {
-                _gameState.PlayCard(player.Name);
+                var playedCard = _gameState.PlayCard(player.Name);
+                _log.Log(string.Format("{0} has played the {1}", player.Name, playedCard));
             }
         }
 
@@ -51,6 +52,11 @@ namespace CelticEgyptianRatscrewKata.Game
             if (_snapValidator.CanSnap(_gameState.Stack))
             {
                 _gameState.WinStack(player.Name);
+                _log.Log(string.Format("{0} won the stack", player.Name));
+            }
+            else
+            {
+                _log.Log(string.Format("{0} did not win the stack", player.Name));
             }
         }
 
