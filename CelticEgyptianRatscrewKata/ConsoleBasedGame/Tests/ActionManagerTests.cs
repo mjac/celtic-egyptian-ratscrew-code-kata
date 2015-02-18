@@ -41,5 +41,19 @@ namespace ConsoleBasedGame.Tests
             _gameController.DidNotReceive().AttemptSnap(Arg.Any<IPlayer>());
             _gameController.DidNotReceive().PlayCard(Arg.Any<IPlayer>());
         }
+
+        [Test]
+        public void AttemptsSnapWhenSnapKeyPressed()
+        {
+            // ARRANGE
+            var playerInfo = new PlayerInfo("playerName", 'a', 'b');
+            _actionManager.Bind(playerInfo);
+            
+            // ACT
+            _actionManager.Process(playerInfo.SnapKey);
+
+            // ASSERT
+            _gameController.Received(1).AttemptSnap(playerInfo);
+        }
     }
 }
