@@ -27,5 +27,19 @@ namespace ConsoleBasedGame.Tests
             _gameController.DidNotReceive().AttemptSnap(Arg.Any<IPlayer>());
             _gameController.DidNotReceive().PlayCard(Arg.Any<IPlayer>());
         }
+
+        [Test]
+        public void DoesNothingWhenKeyNotBound()
+        {
+            // ARRANGE
+            _actionManager.Bind(new PlayerInfo("playerName", 'a', 'b'));
+
+            // ACT
+            _actionManager.Process('c');
+
+            // ASSERT
+            _gameController.DidNotReceive().AttemptSnap(Arg.Any<IPlayer>());
+            _gameController.DidNotReceive().PlayCard(Arg.Any<IPlayer>());
+        }
     }
 }

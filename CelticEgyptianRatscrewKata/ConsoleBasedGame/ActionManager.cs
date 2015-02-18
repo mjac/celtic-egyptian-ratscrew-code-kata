@@ -18,5 +18,10 @@ namespace ConsoleBasedGame
         {
 
         }
+
+        public void Bind(PlayerInfo playerInfo)
+        {
+
+        }
     }
 }
