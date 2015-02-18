@@ -8,7 +8,7 @@ namespace CelticEgyptianRatscrewKata.Game
     /// <summary>
     /// Controls a game of Celtic Egyptian Ratscrew.
     /// </summary>
-    public class GameController
+    public class GameController : IGameController
     {
         private readonly ISnapValidator _snapValidator;
         private readonly IDealer _dealer;
