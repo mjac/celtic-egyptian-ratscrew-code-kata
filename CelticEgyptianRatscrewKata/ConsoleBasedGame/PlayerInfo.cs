@@ -14,5 +14,10 @@ namespace ConsoleBasedGame
             Name = name;
             PlayCardKey = playCardKey;
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - Play '{1}' - Snap '{2}'", Name, PlayCardKey, SnapKey);
+        }
     }
 }
