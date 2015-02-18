@@ -7,7 +7,7 @@ namespace ConsoleBasedGame
     {
         static void Main(string[] args)
         {
-            GameController game = new GameFactory().Create();
+            GameController game = new GameFactory().Create(new ConsoleLog());
 
             var userInterface = new UserInterface();
             IEnumerable<PlayerInfo> playerInfos = userInterface.GetPlayerInfoFromUserLazily();
