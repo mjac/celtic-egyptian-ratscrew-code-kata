@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using CelticEgyptianRatscrewKata.Game;
 
 namespace ConsoleBasedGame
@@ -7,7 +7,8 @@ namespace ConsoleBasedGame
     {
         static void Main(string[] args)
         {
-            GameController game = new GameFactory().Create(new ConsoleLog());
+            var log = new ConsoleLog();
+            var game = new GameFactory().Create(log);
             var actionManager = new ActionManager(game);
 
             var userInterface = new UserInterface();
