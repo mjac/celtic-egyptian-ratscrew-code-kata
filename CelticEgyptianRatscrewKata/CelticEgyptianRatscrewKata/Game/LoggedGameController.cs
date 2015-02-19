@@ -31,13 +31,7 @@ namespace CelticEgyptianRatscrewKata.Game
             var wasValidSnap = _gameController.AttemptSnap(player);
 
             var snapLogMessage = wasValidSnap ? "won the stack" : "did not win the stack";
-            if (wasValidSnap) {
-                _log.Log(string.Format("{0} {1}", player.Name, snapLogMessage));
-            }
-            else
-            {
-                _log.Log(string.Format("{0} {1}", player.Name, snapLogMessage));
-            }
+            _log.Log(string.Format("{0} {1}", player.Name, snapLogMessage));
             LogGameState();
             return wasValidSnap;
         }
