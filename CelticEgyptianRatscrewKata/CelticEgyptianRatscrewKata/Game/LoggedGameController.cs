@@ -28,8 +28,8 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public bool AttemptSnap(IPlayer player)
         {
-            var snapped = _gameController.AttemptSnap(player);
-            if (snapped) {
+            var wasValidSnap = _gameController.AttemptSnap(player);
+            if (wasValidSnap) {
                 _log.Log(string.Format("{0} won the stack", player.Name));
             }
             else
@@ -37,7 +37,7 @@ namespace CelticEgyptianRatscrewKata.Game
                 _log.Log(string.Format("{0} did not win the stack", player.Name));
             }
             LogGameState();
-            return snapped;
+            return wasValidSnap;
         }
 
         public void StartGame(Cards deck)
