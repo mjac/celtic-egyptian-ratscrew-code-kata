@@ -90,6 +90,8 @@ namespace CelticEgyptianRatscrewKata.Game
         public bool TryGetWinner(out IPlayer winner)
         {
             var playersWithCards = _players.Where(p => _gameState.HasCards(p.Name)).ToList();
+
+            if (!_gameState.Stack.Any() && playersWithCards.Count() == 1)
             {
                 winner = playersWithCards.Single();
                 return true;
