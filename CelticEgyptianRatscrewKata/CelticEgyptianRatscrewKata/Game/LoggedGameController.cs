@@ -47,9 +47,21 @@ namespace CelticEgyptianRatscrewKata.Game
             return _gameController.TryGetWinner(out winner);
         }
 
-        public IEnumerable<IPlayer> Players { get { return _gameController.Players; } }
-        public int StackSize { get {return _gameController.StackSize; } }
-        public Card TopOfStack { get{ return _gameController.TopOfStack; } }
+        public IEnumerable<IPlayer> Players
+        {
+            get { return _gameController.Players; }
+        }
+
+        public int StackSize
+        {
+            get { return _gameController.StackSize; }
+        }
+
+        public Card TopOfStack
+        {
+            get { return _gameController.TopOfStack; }
+        }
+
         public int NumberOfCards(IPlayer player)
         {
             return _gameController.NumberOfCards(player);
