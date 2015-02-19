@@ -87,7 +87,7 @@ namespace CelticEgyptianRatscrewKata.Tests
             var dealer = new Dealer();
             var noneShufflingShuffler = new NoneShufflingShuffler();
 
-            return new GameController(gameState, completeSnapValidator, dealer, noneShufflingShuffler, Substitute.For<ILog>());
+            return new GameController(gameState, completeSnapValidator, dealer, noneShufflingShuffler);
         }
 
         private static ISnapValidator CreateCompleteSnapValidator()

@@ -15,60 +15,64 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IShuffler _shuffler;
         private readonly IList<IPlayer> _players;
         private readonly IGameState _gameState;
-        private readonly ILog _log;
 
-        public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler, ILog log)
+        public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler)
         {
             _players = new List<IPlayer>();
             _gameState = gameState;
             _snapValidator = snapValidator;
             _dealer = dealer;
             _shuffler = shuffler;
-            _log = log;
+        }
+
+        public IEnumerable<IPlayer> Players
+        {
+            get { return _players; }
+        }
+
+        public int StackSize
+        {
+            get { return _gameState.Stack.Count(); }
+        }
+
+        public Card TopOfStack
+        {
+            get { return _gameState.Stack.FirstOrDefault(); }
+        }
+
+        public int NumberOfCards(IPlayer player)
+        {
+            return _gameState.NumberOfCards(player.Name);
         }
 
         public bool AddPlayer(IPlayer player)
         {
-            if (_players.Any(x => x.Name == player.Name)) return false;
+            if (Players.Any(x => x.Name == player.Name)) return false;
 
             _players.Add(player);
             _gameState.AddPlayer(player.Name, Cards.Empty());
             return true;
         }
 
-        public void PlayCard(IPlayer player)
+        public Card PlayCard(IPlayer player)
         {
             if (_gameState.HasCards(player.Name))
             {
-                var playedCard = _gameState.PlayCard(player.Name);
-                _log.Log(string.Format("{0} has played the {1}", player.Name, playedCard));
+                return _gameState.PlayCard(player.Name);
             }
-            LogGameState();
+            return null;
         }
 
-        private void LogGameState()
-        {
-            _log.Log(string.Format("Stack ({0}): {1} ", _gameState.Stack.Count(), _gameState.Stack.Any() ? _gameState.Stack.First().ToString() : ""));
-            foreach (var player in _players)
-            {
-                _log.Log(string.Format("{0}: {1} cards", player.Name, _gameState.NumberOfCards(player.Name)));
-            }
-        }
-
-        public void AttemptSnap(IPlayer player)
+        public bool AttemptSnap(IPlayer player)
         {
             AddPlayer(player);
 
             if (_snapValidator.CanSnap(_gameState.Stack))
             {
                 _gameState.WinStack(player.Name);
-                _log.Log(string.Format("{0} won the stack", player.Name));
+                return true;
             }
-            else
-            {
-                _log.Log(string.Format("{0} did not win the stack", player.Name));
-            }
-            LogGameState();
+            return false;
         }
 
         /// <summary>
@@ -84,7 +88,6 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 _gameState.AddPlayer(_players[i].Name, decks[i]);
             }
-            LogGameState();
         }
 
         public bool TryGetWinner(out IPlayer winner)
