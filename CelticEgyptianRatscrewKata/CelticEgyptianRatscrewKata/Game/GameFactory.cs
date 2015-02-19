@@ -13,8 +13,9 @@ namespace CelticEgyptianRatscrewKata.Game
                 new SandwichSnapRule(),
                 new StandardSnapRule(),
             };
-            return new LoggedGameController(
-                new GameController(new  GameState(), new SnapValidator(rules), new Dealer(), new Shuffler()), log);
+
+            var gameController = new GameController(new  GameState(), new SnapValidator(rules), new Dealer(), new Shuffler());
+            return new LoggedGameController(gameController, log);
         }
 
         public static Cards CreateFullDeckOfCards()
