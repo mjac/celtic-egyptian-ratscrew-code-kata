@@ -26,7 +26,14 @@ namespace ConsoleBasedGame
             while (userInterface.TryReadUserInput(out userInput))
             {
                 actionManager.Process(userInput);
-            } 
+
+                IPlayer winner;
+                if (game.TryGetWinner(out winner))
+                {
+                    log.Log(string.Format("{0} won the game!", winner.Name));
+                    break;
+                }
+            }
         }
     }
 }
