@@ -48,6 +48,38 @@ namespace CelticEgyptianRatscrewKata.Tests
             Assert.That(winner.Name, Is.EqualTo(playerC.Name));
         }
 
+        [Test]
+        public void RedRouteNoWinnerAfterSomeRoundsOfPlay()
+        {
+            // Arrange
+            var gameController = CreateGameController();
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+            var playerC = new Player("playerC");
+            var playerD = new Player("playerD");
+            var deck = CreateNewSimpleDeck();
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.AddPlayer(playerC);
+            gameController.AddPlayer(playerD);
+            gameController.StartGame(deck);
+
+            gameController.PlayCard(playerA);
+            gameController.PlayCard(playerB);
+            gameController.PlayCard(playerC);
+            gameController.PlayCard(playerD);
+            gameController.PlayCard(playerA);
+            gameController.PlayCard(playerB);
+            gameController.AttemptSnap(playerC);
+
+            // Assert
+            IPlayer potentialWinner;
+            var hasWinner = gameController.TryGetWinner(out potentialWinner);
+            Assert.False(hasWinner);
+        }
+
         private static GameController CreateGameController()
         {
             var gameState = new GameState();
