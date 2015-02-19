@@ -10,7 +10,7 @@ namespace CelticEgyptianRatscrewKata.Tests
     public class GameControllerTests
     {
         [Test]
-        public void RedRouteValidSnapAfterSeveralCardsLaid()
+        public void RedRouteWinnerAfterSomeRoundsOfPlay()
         {
             // Arrange
             var gameController = CreateGameController();
