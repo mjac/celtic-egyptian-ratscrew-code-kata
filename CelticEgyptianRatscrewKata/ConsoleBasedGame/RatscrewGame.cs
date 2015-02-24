@@ -44,12 +44,14 @@ namespace ConsoleBasedGame
             {
                 actionManager.Process(userInput);
 
-                IPlayer winner;
-                if (game.TryGetWinner(out winner))
-                {
-                    break;
-                }
+                if (HasWinner(game)) break;
             }
+        }
+
+        private static bool HasWinner(IGameController game)
+        {
+            IPlayer winner;
+            return game.TryGetWinner(out winner);
         }
     }
 }
