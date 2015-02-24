@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConsoleBasedGame
 {
-    class UserInterface : IUserInterface
+    class ConsoleUserInterface : IUserInterface
     {
         public IEnumerable<PlayerInfo> GetPlayerInfoFromUser()
         {

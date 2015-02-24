@@ -6,7 +6,7 @@ namespace ConsoleBasedGame
     {
         static void Main()
         {
-            var ratscrewGame = new RatscrewGame(new GameFactory(), new UserInterface());
+            var ratscrewGame = new RatscrewGame(new RatscrewGameFactory(), new ConsoleUserInterface());
             ratscrewGame.Play(new ConsoleLog());
         }
     }

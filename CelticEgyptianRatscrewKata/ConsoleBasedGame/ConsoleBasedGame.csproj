@@ -58,7 +58,7 @@
     <Compile Include="RatscrewGame.cs" />
     <Compile Include="Tests\ActionManagerTests.cs" />
     <Compile Include="Tests\PlayerInfoTests.cs" />
-    <Compile Include="UserInterface.cs" />
+    <Compile Include="ConsoleUserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
