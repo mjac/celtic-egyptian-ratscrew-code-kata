@@ -8,10 +8,11 @@ namespace ConsoleBasedGame
         static void Main(string[] args)
         {
             var log = new ConsoleLog();
+            var userInterface = new UserInterface();
+
             var game = new GameFactory().Create(log);
             var actionManager = new ActionManager(game);
 
-            var userInterface = new UserInterface();
             IEnumerable<PlayerInfo> playerInfos = userInterface.GetPlayerInfoFromUserLazily();
 
             foreach (PlayerInfo playerInfo in playerInfos)
