@@ -26,7 +26,7 @@ namespace ConsoleBasedGame
 
         private void SetUp(IGameController game, ActionManager actionManager)
         {
-            IEnumerable<PlayerInfo> playerInfos = m_UserInterface.GetPlayerInfoFromUserLazily();
+            IEnumerable<PlayerInfo> playerInfos = m_UserInterface.GetPlayerInfoFromUser();
 
             foreach (PlayerInfo playerInfo in playerInfos)
             {

@@ -4,7 +4,7 @@ namespace ConsoleBasedGame
 {
     internal interface IUserInterface
     {
-        IEnumerable<PlayerInfo> GetPlayerInfoFromUserLazily();
+        IEnumerable<PlayerInfo> GetPlayerInfoFromUser();
         bool TryReadUserInput(out char userInput);
     }
 }

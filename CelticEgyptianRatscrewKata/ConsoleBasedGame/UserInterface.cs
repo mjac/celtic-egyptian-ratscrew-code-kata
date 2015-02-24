@@ -5,7 +5,7 @@ namespace ConsoleBasedGame
 {
     class UserInterface : IUserInterface
     {
-        public IEnumerable<PlayerInfo> GetPlayerInfoFromUserLazily()
+        public IEnumerable<PlayerInfo> GetPlayerInfoFromUser()
         {
             bool again;
             do
