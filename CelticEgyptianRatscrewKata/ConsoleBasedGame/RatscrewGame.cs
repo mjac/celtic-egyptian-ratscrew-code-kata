@@ -28,7 +28,7 @@ namespace ConsoleBasedGame
         {
             IEnumerable<PlayerInfo> playerInfos = m_UserInterface.GetPlayerInfoFromUser();
 
-            foreach (PlayerInfo playerInfo in playerInfos)
+            foreach (var playerInfo in playerInfos)
             {
                 game.AddPlayer(playerInfo);
                 actionManager.Bind(playerInfo);
