@@ -20,6 +20,12 @@ namespace ConsoleBasedGame
             var game = new GameFactory().Create(m_Log);
             var actionManager = new ActionManager(game);
 
+            SetUp(game, actionManager);
+            StartGame(game, actionManager);
+        }
+
+        private void SetUp(IGameController game, ActionManager actionManager)
+        {
             IEnumerable<PlayerInfo> playerInfos = m_UserInterface.GetPlayerInfoFromUserLazily();
 
             foreach (PlayerInfo playerInfo in playerInfos)
@@ -27,7 +33,10 @@ namespace ConsoleBasedGame
                 game.AddPlayer(playerInfo);
                 actionManager.Bind(playerInfo);
             }
+        }
 
+        private void StartGame(IGameController game, ActionManager actionManager)
+        {
             game.StartGame(GameFactory.CreateFullDeckOfCards());
 
             char userInput;
