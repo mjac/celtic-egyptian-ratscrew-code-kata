@@ -1,12 +1,8 @@
-using System.Collections.Generic;
-using CelticEgyptianRatscrewKata;
-using CelticEgyptianRatscrewKata.Game;
-
 namespace ConsoleBasedGame
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var log = new ConsoleLog();
             var userInterface = new UserInterface();
