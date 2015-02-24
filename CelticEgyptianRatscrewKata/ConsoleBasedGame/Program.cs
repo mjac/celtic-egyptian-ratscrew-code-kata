@@ -11,8 +11,8 @@ namespace ConsoleBasedGame
             var log = new ConsoleLog();
             var userInterface = new UserInterface();
 
-            var ratscrewGame = new RatscrewGame();
-            ratscrewGame.Play(log, userInterface);
+            var ratscrewGame = new RatscrewGame(log, userInterface);
+            ratscrewGame.Play();
         }
     }
 }
