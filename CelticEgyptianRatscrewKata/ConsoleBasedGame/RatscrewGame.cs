@@ -7,9 +7,9 @@ namespace ConsoleBasedGame
     class RatscrewGame
     {
         private readonly ILog m_Log;
-        private readonly UserInterface m_UserInterface;
+        private readonly IUserInterface m_UserInterface;
 
-        public RatscrewGame(ILog log, UserInterface userInterface)
+        public RatscrewGame(ILog log, IUserInterface userInterface)
         {
             m_Log = log;
             m_UserInterface = userInterface;
