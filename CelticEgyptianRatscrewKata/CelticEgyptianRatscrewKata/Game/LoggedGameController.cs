@@ -44,7 +44,12 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public bool TryGetWinner(out IPlayer winner)
         {
-            return _gameController.TryGetWinner(out winner);
+            var hasWinner = _gameController.TryGetWinner(out winner);
+            if (hasWinner)
+            {
+                _log.Log(string.Format("{0} won the game!", winner.Name));
+            }
+            return hasWinner;
         }
 
         public IEnumerable<IPlayer> Players

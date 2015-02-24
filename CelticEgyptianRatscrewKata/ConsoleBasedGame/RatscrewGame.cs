@@ -47,7 +47,6 @@ namespace ConsoleBasedGame
                 IPlayer winner;
                 if (game.TryGetWinner(out winner))
                 {
-                    m_Log.Log(string.Format("{0} won the game!", winner.Name));
                     break;
                 }
             }
