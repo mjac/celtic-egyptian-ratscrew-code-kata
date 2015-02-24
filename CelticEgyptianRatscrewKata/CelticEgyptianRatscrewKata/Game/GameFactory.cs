@@ -3,7 +3,7 @@ using CelticEgyptianRatscrewKata.SnapRules;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
-    public class GameFactory
+    public class GameFactory : IGameFactory
     {
         public IGameController Create(ILog log)
         {

@@ -7,9 +7,9 @@ namespace ConsoleBasedGame
     class RatscrewGame
     {
         private readonly IUserInterface m_UserInterface;
-        private readonly GameFactory m_GameFactory;
+        private readonly IGameFactory m_GameFactory;
 
-        public RatscrewGame(GameFactory gameFactory, IUserInterface userInterface)
+        public RatscrewGame(IGameFactory gameFactory, IUserInterface userInterface)
         {
             m_UserInterface = userInterface;
             m_GameFactory = gameFactory;
