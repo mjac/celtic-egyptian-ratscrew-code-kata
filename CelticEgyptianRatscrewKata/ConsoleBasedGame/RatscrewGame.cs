@@ -37,7 +37,7 @@ namespace ConsoleBasedGame
 
         private void StartGame(IGameController game, ActionManager actionManager)
         {
-            game.StartGame(RatscrewGameFactory.CreateFullDeckOfCards());
+            game.StartGame(Cards.CreateFullDeckOfCards());
 
             char userInput;
             while (m_UserInterface.TryReadUserInput(out userInput))
