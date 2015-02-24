@@ -4,8 +4,8 @@ namespace ConsoleBasedGame
     {
         static void Main()
         {
-            var ratscrewGame = new RatscrewGame(new ConsoleLog(), new UserInterface());
-            ratscrewGame.Play();
+            var ratscrewGame = new RatscrewGame(new UserInterface());
+            ratscrewGame.Play(new ConsoleLog());
         }
     }
 }

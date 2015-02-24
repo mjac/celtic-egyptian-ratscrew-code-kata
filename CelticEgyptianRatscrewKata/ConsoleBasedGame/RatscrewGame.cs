@@ -6,18 +6,16 @@ namespace ConsoleBasedGame
 {
     class RatscrewGame
     {
-        private readonly ILog m_Log;
         private readonly IUserInterface m_UserInterface;
 
-        public RatscrewGame(ILog log, IUserInterface userInterface)
+        public RatscrewGame(IUserInterface userInterface)
         {
-            m_Log = log;
             m_UserInterface = userInterface;
         }
 
-        public void Play()
+        public void Play(ILog log)
         {
-            var game = new GameFactory().Create(m_Log);
+            var game = new GameFactory().Create(log);
             var actionManager = new ActionManager(game);
 
             SetUp(game, actionManager);
