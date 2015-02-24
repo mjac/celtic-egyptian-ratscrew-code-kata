@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CelticEgyptianRatscrewKata;
 using CelticEgyptianRatscrewKata.Game;
 
 namespace ConsoleBasedGame
@@ -10,6 +11,11 @@ namespace ConsoleBasedGame
             var log = new ConsoleLog();
             var userInterface = new UserInterface();
 
+            Play(log, userInterface);
+        }
+
+        private static void Play(ILog log, UserInterface userInterface)
+        {
             var game = new GameFactory().Create(log);
             var actionManager = new ActionManager(game);
 
