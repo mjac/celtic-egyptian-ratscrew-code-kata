@@ -23,11 +23,13 @@
 
         public void ClearPenalties()
         {
+            _log.Log("Penalties has been cleared for all players");
             _penalties.ClearPenalties();
         }
 
         public void GivePenalty(IPlayer player)
         {
+            _log.Log(string.Format("{0} now has a snapping penalty", player.Name));
             _penalties.GivePenalty(player);
         }
     }
