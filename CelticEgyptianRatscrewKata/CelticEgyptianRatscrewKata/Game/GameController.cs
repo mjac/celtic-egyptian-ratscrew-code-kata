@@ -16,7 +16,7 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IList<IPlayer> _players;
         private readonly IGameState _gameState;
 
-        private IDictionary<IPlayer, bool> _hasPenalty; 
+        private readonly Penalties _penalties;
 
         public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler)
         {
@@ -26,7 +26,7 @@ namespace CelticEgyptianRatscrewKata.Game
             _dealer = dealer;
             _shuffler = shuffler;
 
-            _hasPenalty = new Dictionary<IPlayer, bool>();
+            _penalties = new Penalties();
         }
 
         public IEnumerable<IPlayer> Players
@@ -56,7 +56,7 @@ namespace CelticEgyptianRatscrewKata.Game
             _players.Add(player);
             _gameState.AddPlayer(player.Name, Cards.Empty());
 
-            _hasPenalty.Add(player, false);
+            _penalties.AddPlayer(player);
 
             return true;
         }
@@ -73,7 +73,7 @@ namespace CelticEgyptianRatscrewKata.Game
         public bool AttemptSnap(IPlayer player)
         {
             AddPlayer(player);
-            if (_hasPenalty[player])
+            if (_penalties.HasPenalty(player))
             {
                 return false;
             }
@@ -81,31 +81,14 @@ namespace CelticEgyptianRatscrewKata.Game
             if (_snapValidator.CanSnap(_gameState.Stack))
             {
                 _gameState.WinStack(player.Name);
-                ClearPenalties();
+                _penalties.ClearPenalties();
                 return true;
             }
             else
             {
-                GivePenalty(player);
+                _penalties.GivePenalty(player);
             }
             return false;
-        }
-
-        private void GivePenalty(IPlayer player)
-        {
-            _hasPenalty[player] = true;
-            if (_hasPenalty.All(kvp => kvp.Value))
-            {
-                ClearPenalties();
-            }
-        }
-
-        private void ClearPenalties()
-        {
-            foreach (var player in _players)
-            {
-                _hasPenalty[player] = false;
-            }
         }
 
         /// <summary>
