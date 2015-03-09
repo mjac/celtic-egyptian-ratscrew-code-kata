@@ -50,6 +50,7 @@
     <Compile Include="Game\IGameFactory.cs" />
     <Compile Include="Game\IPenalties.cs" />
     <Compile Include="Game\LoggedGameController.cs" />
+    <Compile Include="Game\LoggedPenalties.cs" />
     <Compile Include="Game\Penalties.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="SnapRules\DarkQueenSnapRule.cs" />
