@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
-    public class Penalties
+    public class Penalties : IPenalties
     {
         private readonly IDictionary<IPlayer, bool> _hasPenalty;
 

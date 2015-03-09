@@ -19,7 +19,7 @@ namespace CelticEgyptianRatscrewKata.Tests
             var snapValidator = Substitute.For<ISnapValidator>();
             snapValidator.CanSnap(Arg.Any<Cards>()).Returns(false, true);
 
-            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>());
+            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties());
             gameController.AddPlayer(player1);
             gameController.AddPlayer(player2);
 
@@ -42,7 +42,7 @@ namespace CelticEgyptianRatscrewKata.Tests
             var snapValidator = Substitute.For<ISnapValidator>();
             snapValidator.CanSnap(Arg.Any<Cards>()).Returns(false, true);
 
-            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>());
+            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties());
             gameController.AddPlayer(player1);
             gameController.AddPlayer(player2);
 
@@ -67,7 +67,7 @@ namespace CelticEgyptianRatscrewKata.Tests
             var snapValidator = Substitute.For<ISnapValidator>();
             snapValidator.CanSnap(Arg.Any<Cards>()).Returns(false, false, true);
 
-            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>());
+            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties());
             gameController.AddPlayer(player1);
             gameController.AddPlayer(player2);
 
