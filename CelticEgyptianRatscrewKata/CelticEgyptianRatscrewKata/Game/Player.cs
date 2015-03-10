@@ -8,5 +8,6 @@ namespace CelticEgyptianRatscrewKata.Game
         }
 
         public string Name { get; private set; }
+        public bool HasPenalty { get; set; }
     }
 }

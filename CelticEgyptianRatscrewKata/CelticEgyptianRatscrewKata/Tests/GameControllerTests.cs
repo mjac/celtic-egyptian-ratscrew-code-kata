@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CelticEgyptianRatscrewKata.Game;
 using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
@@ -80,6 +81,102 @@ namespace CelticEgyptianRatscrewKata.Tests
             Assert.False(hasWinner);
         }
 
+        [Test]
+        public void SnapWins()
+        {
+            // Arrange
+            var gameController = CreateGameController();
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+            var deck = Cards.With(
+                new Card(Suit.Clubs, Rank.Three),
+                new Card(Suit.Diamonds, Rank.Three),
+                new Card(Suit.Spades, Rank.Queen)
+                );
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.StartGame(deck);
+
+            gameController.PlayCard(playerA);
+            gameController.PlayCard(playerB);
+            gameController.PlayCard(playerA);
+            gameController.AttemptSnap(playerA);
+
+            // Assert
+            IPlayer potentialWinner;
+            var hasWinner = gameController.TryGetWinner(out potentialWinner);
+            Assert.True(hasWinner);
+        }
+
+        [Test]
+        public void SnapAtWrongTime()
+        {
+            // Arrange
+            var gameController = CreateLoggedGameController();
+
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+
+            var deck = Cards.With(
+                new Card(Suit.Clubs, Rank.Three),
+                new Card(Suit.Diamonds, Rank.Three),
+                new Card(Suit.Spades, Rank.Queen)
+                );
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.StartGame(deck);
+
+            gameController.PlayCard(playerA);
+            gameController.PlayCard(playerB);
+            var hasSnapped = gameController.AttemptSnap(playerA);
+
+            // Assert
+            Assert.That(hasSnapped, Is.False);
+            Assert.That(playerA.HasPenalty, Is.True);
+        }
+
+        [Test]
+        public void SnapWithPenaltyFails()
+        {
+            // Arrange
+            var gameController = CreateLoggedGameController();
+
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+
+            var deck = Cards.With(
+                new Card(Suit.Clubs, Rank.Three),
+                new Card(Suit.Diamonds, Rank.Three),
+                new Card(Suit.Spades, Rank.Queen)
+                );
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.StartGame(deck);
+
+            gameController.PlayCard(playerA);
+            gameController.PlayCard(playerB);
+            gameController.AttemptSnap(playerB);
+            gameController.PlayCard(playerA);
+            var hasSnapped = gameController.AttemptSnap(playerB);
+
+            // Assert
+            Assert.That(playerB.HasPenalty, Is.True);
+            Assert.False(hasSnapped);
+        }
+
+        private static IGameController CreateLoggedGameController()
+        {
+            IGameController gameController = CreateGameController();
+            gameController = new LoggedGameController(gameController, new ConsoleLog());
+            return gameController;
+        }
+
         private static GameController CreateGameController()
         {
             var gameState = new GameState();
@@ -123,6 +220,13 @@ namespace CelticEgyptianRatscrewKata.Tests
         public Cards Shuffle(Cards deck)
         {
             return new Cards(deck);
+        }
+    }
+    public class ConsoleLog : ILog
+    {
+        public void Log(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

@@ -72,6 +72,9 @@ namespace CelticEgyptianRatscrewKata.Game
                 _gameState.WinStack(player.Name);
                 return true;
             }
+
+            player.HasPenalty = true;
+
             return false;
         }
 
