@@ -18,12 +18,13 @@ namespace CelticEgyptianRatscrewKata.Game
             return _gameController.AddPlayer(player);
         }
 
-        public Card PlayCard(IPlayer player)
+        public bool TakeTurn(IPlayer player, out Card card)
         {
-            var playedCard = _gameController.PlayCard(player);
-            _log.Log(string.Format("{0} has played the {1}", player.Name, playedCard));
+            var turnResult = _gameController.TakeTurn(player, out card);
+            _log.Log(string.Format("{0} has played the {1}", player.Name, card));
+            LogPenaltyStatus(turnResult, player);
             LogGameState();
-            return playedCard;
+            return turnResult;
         }
 
         public bool AttemptSnap(IPlayer player)
@@ -32,6 +33,9 @@ namespace CelticEgyptianRatscrewKata.Game
 
             var snapLogMessage = wasValidSnap ? "won the stack" : "did not win the stack";
             _log.Log(string.Format("{0} {1}", player.Name, snapLogMessage));
+
+            LogPenaltyStatus(wasValidSnap, player);
+
             LogGameState();
             return wasValidSnap;
         }
@@ -78,6 +82,19 @@ namespace CelticEgyptianRatscrewKata.Game
             foreach (var player in _gameController.Players)
             {
                 _log.Log(string.Format("{0}: {1} cards", player.Name, _gameController.NumberOfCards(player)));
+            }
+        }
+
+        private void LogPenaltyStatus(bool hasCommandSucceeded, IPlayer player)
+        {
+            if (player.HasPenalty)
+            {
+                _log.Log(string.Format("{0} {1}", player.Name, "received a penalty"));
+            }
+            else if (!hasCommandSucceeded)
+            {
+                _log.Log(string.Format("{0} {1}", player.Name, "received a penalty"));
+                _log.Log("All penalties were removed");
             }
         }
     }

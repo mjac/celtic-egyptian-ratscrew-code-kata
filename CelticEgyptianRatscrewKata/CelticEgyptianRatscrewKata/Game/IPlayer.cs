@@ -8,6 +8,8 @@
         /// <summary>
         /// The name of the player, <em>must</em> be unique.
         /// </summary>
-        string Name { get; } 
+        string Name { get; }
+
+        bool HasPenalty { get; set; }
     }
 }

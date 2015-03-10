@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CelticEgyptianRatscrewKata.Game;
 using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
@@ -27,18 +28,38 @@ namespace CelticEgyptianRatscrewKata.Tests
             gameController.AddPlayer(playerD);
             gameController.StartGame(deck);
 
-            gameController.PlayCard(playerA);
-            gameController.PlayCard(playerB);
-            gameController.PlayCard(playerC);
-            gameController.PlayCard(playerD);
-            gameController.PlayCard(playerA);
-            gameController.PlayCard(playerB);
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            Card card2;
+            gameController.TakeTurn(playerC, out card2);
+            Card temp2 = card2;
+            Card card3;
+            gameController.TakeTurn(playerD, out card3);
+            Card temp3 = card3;
+            Card card4;
+            gameController.TakeTurn(playerA, out card4);
+            Card temp4 = card4;
+            Card card5;
+            gameController.TakeTurn(playerB, out card5);
+            Card temp5 = card5;
             gameController.AttemptSnap(playerC);
 
-            gameController.PlayCard(playerC);
-            gameController.PlayCard(playerD);
-            gameController.PlayCard(playerA);
-            gameController.PlayCard(playerB);
+            Card card6;
+            gameController.TakeTurn(playerC, out card6);
+            Card temp6 = card6;
+            Card card7;
+            gameController.TakeTurn(playerD, out card7);
+            Card temp7 = card7;
+            Card card8;
+            gameController.TakeTurn(playerA, out card8);
+            Card temp8 = card8;
+            Card card9;
+            gameController.TakeTurn(playerB, out card9);
+            Card temp9 = card9;
             gameController.AttemptSnap(playerC);
 
             // Assert
@@ -66,18 +87,176 @@ namespace CelticEgyptianRatscrewKata.Tests
             gameController.AddPlayer(playerD);
             gameController.StartGame(deck);
 
-            gameController.PlayCard(playerA);
-            gameController.PlayCard(playerB);
-            gameController.PlayCard(playerC);
-            gameController.PlayCard(playerD);
-            gameController.PlayCard(playerA);
-            gameController.PlayCard(playerB);
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            Card card2;
+            gameController.TakeTurn(playerC, out card2);
+            Card temp2 = card2;
+            Card card3;
+            gameController.TakeTurn(playerD, out card3);
+            Card temp3 = card3;
+            Card card4;
+            gameController.TakeTurn(playerA, out card4);
+            Card temp4 = card4;
+            Card card5;
+            gameController.TakeTurn(playerB, out card5);
+            Card temp5 = card5;
             gameController.AttemptSnap(playerC);
 
             // Assert
             IPlayer potentialWinner;
             var hasWinner = gameController.TryGetWinner(out potentialWinner);
             Assert.False(hasWinner);
+        }
+
+        [Test]
+        public void SnapWins()
+        {
+            // Arrange
+            var gameController = CreateGameController();
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+            var deck = Cards.With(
+                new Card(Suit.Clubs, Rank.Three),
+                new Card(Suit.Diamonds, Rank.Three),
+                new Card(Suit.Spades, Rank.Queen)
+                );
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.StartGame(deck);
+
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            Card card2;
+            gameController.TakeTurn(playerA, out card2);
+            Card temp2 = card2;
+            gameController.AttemptSnap(playerA);
+
+            // Assert
+            IPlayer potentialWinner;
+            var hasWinner = gameController.TryGetWinner(out potentialWinner);
+            Assert.True(hasWinner);
+        }
+
+        [Test]
+        public void SnapAtWrongTime()
+        {
+            // Arrange
+            var gameController = CreateLoggedGameController();
+
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+
+            var deck = Cards.With(
+                new Card(Suit.Clubs, Rank.Three),
+                new Card(Suit.Diamonds, Rank.Three),
+                new Card(Suit.Spades, Rank.Queen)
+                );
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.StartGame(deck);
+
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            var hasSnapped = gameController.AttemptSnap(playerA);
+
+            // Assert
+            Assert.That(hasSnapped, Is.False);
+            Assert.That(playerA.HasPenalty, Is.True);
+        }
+
+        [Test]
+        public void BothSnapAtWrongTimeRemovesPenalties()
+        {
+            // Arrange
+            var gameController = CreateLoggedGameController();
+
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+
+            var deck = Cards.With(
+                new Card(Suit.Clubs, Rank.Three),
+                new Card(Suit.Diamonds, Rank.Three),
+                new Card(Suit.Spades, Rank.Queen)
+                );
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.StartGame(deck);
+
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            gameController.AttemptSnap(playerA);
+            gameController.AttemptSnap(playerB);
+
+            // Assert
+            Assert.That(playerA.HasPenalty, Is.False);
+            Assert.That(playerB.HasPenalty, Is.False);
+        }
+
+        [Test]
+        public void SnapWithPenaltyFails()
+        {
+            // Arrange
+            var gameController = CreateLoggedGameController();
+
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+
+            var deck = Cards.With(
+                new Card(Suit.Clubs, Rank.Three),
+                new Card(Suit.Diamonds, Rank.Three),
+                new Card(Suit.Spades, Rank.Queen)
+                );
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.StartGame(deck);
+
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            gameController.AttemptSnap(playerB);
+            Card card2;
+            gameController.TakeTurn(playerA, out card2);
+            Card temp2 = card2;
+            var hasSnapped = gameController.AttemptSnap(playerB);
+
+            // Assert
+            Assert.That(playerB.HasPenalty, Is.True);
+            Assert.False(hasSnapped);
+        }
+
+        private static IGameController CreateLoggedGameController()
+        {
+            IGameController gameController = CreateGameController();
+            gameController = new LoggedGameController(gameController, new ConsoleLog());
+            return gameController;
         }
 
         private static GameController CreateGameController()
@@ -123,6 +302,13 @@ namespace CelticEgyptianRatscrewKata.Tests
         public Cards Shuffle(Cards deck)
         {
             return new Cards(deck);
+        }
+    }
+    public class ConsoleLog : ILog
+    {
+        public void Log(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

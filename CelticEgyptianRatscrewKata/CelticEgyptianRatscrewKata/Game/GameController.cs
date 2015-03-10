@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
 
@@ -15,6 +16,7 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IShuffler _shuffler;
         private readonly IList<IPlayer> _players;
         private readonly IGameState _gameState;
+        private int _expectedPlayerIndex;
 
         public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler)
         {
@@ -54,12 +56,38 @@ namespace CelticEgyptianRatscrewKata.Game
             return true;
         }
 
-        public Card PlayCard(IPlayer player)
+        public Card TakeTurn(IPlayer player)
+        {
+            Card card;
+            TakeTurn(player, out card);
+
+            return card;
+        }
+
+        public bool TakeTurn(IPlayer player, out Card card)
+        {
+            var playerIndex = _players.IndexOf(player);
+
+            if (playerIndex != _expectedPlayerIndex)
+            {
+                card = _gameState.FaultCard(player.Name);
+                AddPenalty(player);
+                return false;
+            }
+
+            card = PlayCard(player);
+            UpdateNextExpectedPlayer(playerIndex);
+
+            return card != null;
+        }
+
+        private Card PlayCard(IPlayer player)
         {
             if (_gameState.HasCards(player.Name))
             {
                 return _gameState.PlayCard(player.Name);
             }
+
             return null;
         }
 
@@ -67,11 +95,19 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             AddPlayer(player);
 
+            if (player.HasPenalty)
+            {
+                return false;
+            }
+
             if (_snapValidator.CanSnap(_gameState.Stack))
             {
                 _gameState.WinStack(player.Name);
                 return true;
             }
+
+            AddPenalty(player);
+
             return false;
         }
 
@@ -88,6 +124,8 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 _gameState.AddPlayer(_players[i].Name, decks[i]);
             }
+
+            _expectedPlayerIndex = 0;
         }
 
         public bool TryGetWinner(out IPlayer winner)
@@ -102,6 +140,24 @@ namespace CelticEgyptianRatscrewKata.Game
 
             winner = null;
             return false;
+        }
+
+        private void UpdateNextExpectedPlayer(int playerIndex)
+        {
+            _expectedPlayerIndex = (playerIndex + 1) % _players.Count;
+        }
+
+        private void AddPenalty(IPlayer player)
+        {
+            player.HasPenalty = true;
+
+            if (_players.All(p => p.HasPenalty))
+            {
+                foreach (IPlayer p in _players)
+                {
+                    p.HasPenalty = false;
+                }
+            }
         }
     }
 }
