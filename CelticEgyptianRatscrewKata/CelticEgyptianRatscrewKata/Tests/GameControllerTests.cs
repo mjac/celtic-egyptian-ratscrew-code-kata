@@ -189,11 +189,11 @@ namespace CelticEgyptianRatscrewKata.Tests
 
         private static ISnapValidator CreateCompleteSnapValidator()
         {
-            var rules = new ISnapRule[]
+            var rules = new ICardSnapRule[]
                         {
-                            new DarkQueenSnapRule(),
-                            new SandwichSnapRule(),
-                            new StandardSnapRule()
+                            new DarkQueenCardSnapRule(),
+                            new SandwichCardSnapRule(),
+                            new StandardCardSnapRule()
                         };
             return new SnapValidator(rules);
         }

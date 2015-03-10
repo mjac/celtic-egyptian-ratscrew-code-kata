@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a standard snap, i.e. any two adjacent cards have the same rank.
     /// </summary>
-    public class StandardSnapRule : ISnapRule
+    public class StandardCardSnapRule : ICardSnapRule
     {
         public bool IsSnapValid(Cards cardStack)
         {

@@ -5,7 +5,7 @@ namespace CelticEgyptianRatscrewKata.SnapRules
     /// <summary>
     /// Represents the rule where the queen of spades is on the top.
     /// </summary>
-    public class DarkQueenSnapRule : ISnapRule
+    public class DarkQueenCardSnapRule : ICardSnapRule
     {
         private static readonly Card DarkQueen = new Card(Suit.Spades, Rank.Queen);
 

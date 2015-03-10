@@ -8,19 +8,19 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
     [TestFixture]
     public class StandardSnapRuleTests
     {
-        private StandardSnapRule _standardSnapRule;
+        private StandardCardSnapRule _standardCardSnapRule;
 
         [SetUp]
         public void SetUp()
         {
-            _standardSnapRule = new StandardSnapRule();
+            _standardCardSnapRule = new StandardCardSnapRule();
         }
 
         [Test]
         public void ReturnsFalseIfEmpty()
         {
             //ACT
-            var result = _standardSnapRule.IsSnapValid(Cards.Empty());
+            var result = _standardCardSnapRule.IsSnapValid(Cards.Empty());
 
             //ASSERT
             Assert.IsFalse(result);
@@ -36,7 +36,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             });
 
             //ACT
-            var result = _standardSnapRule.IsSnapValid(stack);
+            var result = _standardCardSnapRule.IsSnapValid(stack);
 
             //ASSERT
             Assert.IsFalse(result);
@@ -53,7 +53,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             });
 
             //ACT
-            var result = _standardSnapRule.IsSnapValid(stack);
+            var result = _standardCardSnapRule.IsSnapValid(stack);
 
             //ASSERT
             Assert.IsTrue(result);
@@ -70,7 +70,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             });
 
             //ACT
-            var result = _standardSnapRule.IsSnapValid(stack);
+            var result = _standardCardSnapRule.IsSnapValid(stack);
 
             //ASSERT
             Assert.IsFalse(result);
@@ -88,7 +88,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             });
 
             //ACT
-            var result = _standardSnapRule.IsSnapValid(stack);
+            var result = _standardCardSnapRule.IsSnapValid(stack);
 
             //ASSERT
             Assert.IsFalse(result);
@@ -107,7 +107,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             });
 
             //ACT
-            var result = _standardSnapRule.IsSnapValid(stack);
+            var result = _standardCardSnapRule.IsSnapValid(stack);
 
             //ASSERT
             Assert.IsTrue(result);

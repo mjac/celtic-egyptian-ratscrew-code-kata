@@ -50,7 +50,7 @@
     <Compile Include="Game\IGameFactory.cs" />
     <Compile Include="Game\LoggedGameController.cs" />
     <Compile Include="ILog.cs" />
-    <Compile Include="SnapRules\DarkQueenSnapRule.cs" />
+    <Compile Include="SnapRules\DarkQueenCardSnapRule.cs" />
     <Compile Include="GameSetup\Dealer.cs" />
     <Compile Include="GameSetup\IDealer.cs" />
     <Compile Include="GameSetup\IRandomNumberGenerator.cs" />
@@ -66,11 +66,11 @@
     <Compile Include="Game\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rank.cs" />
-    <Compile Include="SnapRules\ISnapRule.cs" />
-    <Compile Include="SnapRules\SandwichSnapRule.cs" />
+    <Compile Include="SnapRules\ICardSnapRule.cs" />
+    <Compile Include="SnapRules\SandwichCardSnapRule.cs" />
     <Compile Include="SnapRules\ISnapValidator.cs" />
     <Compile Include="SnapRules\SnapValidator.cs" />
-    <Compile Include="SnapRules\StandardSnapRule.cs" />
+    <Compile Include="SnapRules\StandardCardSnapRule.cs" />
     <Compile Include="Tests\SnapRules\DarkQueenRuleTests.cs" />
     <Compile Include="Tests\SnapRules\SandwichSnapRuleTests.cs" />
     <Compile Include="Tests\SnapRules\StandardSnapRuleTests.cs" />
