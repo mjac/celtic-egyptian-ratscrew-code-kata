@@ -5,7 +5,7 @@ namespace CelticEgyptianRatscrewKata.Game
     public interface IGameController
     {
         bool AddPlayer(IPlayer player);
-        Card PlayCard(IPlayer player);
+        Card TakeTurn(IPlayer player);
         bool AttemptSnap(IPlayer player);
 
         /// <summary>

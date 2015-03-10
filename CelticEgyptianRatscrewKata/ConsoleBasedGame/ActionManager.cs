@@ -30,7 +30,7 @@ namespace ConsoleBasedGame
         public void Bind(PlayerInfo playerInfo)
         {
             _keyBindings.Add(playerInfo.SnapKey, () => _gameController.AttemptSnap(playerInfo));
-            _keyBindings.Add(playerInfo.PlayCardKey, () => _gameController.PlayCard(playerInfo));
+            _keyBindings.Add(playerInfo.PlayCardKey, () => _gameController.TakeTurn(playerInfo));
         }
     }
 }

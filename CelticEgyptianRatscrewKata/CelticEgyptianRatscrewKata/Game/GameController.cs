@@ -55,12 +55,13 @@ namespace CelticEgyptianRatscrewKata.Game
             return true;
         }
 
-        public Card PlayCard(IPlayer player)
+        public Card TakeTurn(IPlayer player)
         {
             if (_gameState.HasCards(player.Name))
             {
                 return _gameState.PlayCard(player.Name);
             }
+
             return null;
         }
 

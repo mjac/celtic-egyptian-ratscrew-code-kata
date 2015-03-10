@@ -18,9 +18,9 @@ namespace CelticEgyptianRatscrewKata.Game
             return _gameController.AddPlayer(player);
         }
 
-        public Card PlayCard(IPlayer player)
+        public Card TakeTurn(IPlayer player)
         {
-            var playedCard = _gameController.PlayCard(player);
+            var playedCard = _gameController.TakeTurn(player);
             _log.Log(string.Format("{0} has played the {1}", player.Name, playedCard));
             LogGameState();
             return playedCard;

@@ -25,7 +25,7 @@ namespace ConsoleBasedGame.Tests
 
             // ASSERT
             _gameController.DidNotReceive().AttemptSnap(Arg.Any<IPlayer>());
-            _gameController.DidNotReceive().PlayCard(Arg.Any<IPlayer>());
+            _gameController.DidNotReceive().TakeTurn(Arg.Any<IPlayer>());
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace ConsoleBasedGame.Tests
 
             // ASSERT
             _gameController.DidNotReceive().AttemptSnap(Arg.Any<IPlayer>());
-            _gameController.DidNotReceive().PlayCard(Arg.Any<IPlayer>());
+            _gameController.DidNotReceive().TakeTurn(Arg.Any<IPlayer>());
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace ConsoleBasedGame.Tests
             _actionManager.Process(playerInfo.PlayCardKey);
 
             // ASSERT
-            _gameController.Received(1).PlayCard(playerInfo);
+            _gameController.Received(1).TakeTurn(playerInfo);
         }
     }
 }
