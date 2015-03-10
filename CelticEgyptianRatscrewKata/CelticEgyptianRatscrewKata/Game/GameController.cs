@@ -68,22 +68,24 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             AddPlayer(player);
 
-            if (!player.HasPenalty)
+            if (player.HasPenalty)
             {
-                if (_snapValidator.CanSnap(_gameState.Stack))
-                {
-                    _gameState.WinStack(player.Name);
-                    return true;
-                }
+                return false;
+            }
+            
+            if (_snapValidator.CanSnap(_gameState.Stack))
+            {
+                _gameState.WinStack(player.Name);
+                return true;
+            }
 
-                player.HasPenalty = true;
+            player.HasPenalty = true;
 
-                if (_players.All(p => p.HasPenalty))
+            if (_players.All(p => p.HasPenalty))
+            {
+                foreach (IPlayer p in _players)
                 {
-                    foreach (IPlayer p in _players)
-                    {
-                        p.HasPenalty = false;
-                    }
+                    p.HasPenalty = false;
                 }
             }
 
