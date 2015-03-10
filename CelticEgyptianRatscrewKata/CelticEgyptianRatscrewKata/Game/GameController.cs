@@ -16,6 +16,7 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IShuffler _shuffler;
         private readonly IList<IPlayer> _players;
         private readonly IGameState _gameState;
+        private int _expectedPlayerIndex;
 
         public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler)
         {
@@ -57,6 +58,23 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public Card TakeTurn(IPlayer player)
         {
+            var playerIndex = _players.IndexOf(player);
+
+            if (playerIndex != _expectedPlayerIndex)
+            {
+                _gameState.FaultCard(player.Name);
+                AddPenalty(player);
+                return null;
+            }
+
+            var card = PlayCard(player);
+            UpdateNextExpectedPlayer(playerIndex);
+
+            return card;
+        }
+
+        private Card PlayCard(IPlayer player)
+        {
             if (_gameState.HasCards(player.Name))
             {
                 return _gameState.PlayCard(player.Name);
@@ -73,22 +91,14 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 return false;
             }
-            
+
             if (_snapValidator.CanSnap(_gameState.Stack))
             {
                 _gameState.WinStack(player.Name);
                 return true;
             }
 
-            player.HasPenalty = true;
-
-            if (_players.All(p => p.HasPenalty))
-            {
-                foreach (IPlayer p in _players)
-                {
-                    p.HasPenalty = false;
-                }
-            }
+            AddPenalty(player);
 
             return false;
         }
@@ -106,6 +116,8 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 _gameState.AddPlayer(_players[i].Name, decks[i]);
             }
+
+            _expectedPlayerIndex = 0;
         }
 
         public bool TryGetWinner(out IPlayer winner)
@@ -120,6 +132,24 @@ namespace CelticEgyptianRatscrewKata.Game
 
             winner = null;
             return false;
+        }
+
+        private void UpdateNextExpectedPlayer(int playerIndex)
+        {
+            _expectedPlayerIndex = (playerIndex + 1) % _players.Count;
+        }
+
+        private void AddPenalty(IPlayer player)
+        {
+            player.HasPenalty = true;
+
+            if (_players.All(p => p.HasPenalty))
+            {
+                foreach (IPlayer p in _players)
+                {
+                    p.HasPenalty = false;
+                }
+            }
         }
     }
 }

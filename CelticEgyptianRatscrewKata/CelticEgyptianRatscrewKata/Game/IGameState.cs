@@ -20,6 +20,8 @@ namespace CelticEgyptianRatscrewKata.Game
         /// </summary>
         Card PlayCard(string playerId);
 
+        Card FaultCard(string name);
+
         /// <summary>
         /// Wins the stack for the given player.
         /// </summary>
