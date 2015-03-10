@@ -78,20 +78,11 @@ namespace CelticEgyptianRatscrewKata.Game
 
                 player.HasPenalty = true;
 
-                bool everyoneHasAPenalty = true;
-                foreach (IPlayer t in _players)
+                if (_players.All(p => p.HasPenalty))
                 {
-                    if (!t.HasPenalty)
+                    foreach (IPlayer p in _players)
                     {
-                        everyoneHasAPenalty = false;
-                    }
-                }
-
-                if (everyoneHasAPenalty)
-                {
-                    foreach (IPlayer t in _players)
-                    {
-                        t.HasPenalty = false;
+                        p.HasPenalty = false;
                     }
                 }
             }
