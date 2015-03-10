@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CelticEgyptianRatscrewKata;
 using CelticEgyptianRatscrewKata.Game;
 
 namespace ConsoleBasedGame
@@ -30,7 +31,11 @@ namespace ConsoleBasedGame
         public void Bind(PlayerInfo playerInfo)
         {
             _keyBindings.Add(playerInfo.SnapKey, () => _gameController.AttemptSnap(playerInfo));
-            _keyBindings.Add(playerInfo.PlayCardKey, () => _gameController.TakeTurn(playerInfo));
+            _keyBindings.Add(playerInfo.PlayCardKey, () =>
+            {
+                Card card;
+                _gameController.TakeTurn(playerInfo, out card);
+            });
         }
     }
 }

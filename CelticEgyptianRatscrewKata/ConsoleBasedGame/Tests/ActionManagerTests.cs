@@ -1,4 +1,5 @@
-﻿using CelticEgyptianRatscrewKata.Game;
+﻿using CelticEgyptianRatscrewKata;
+using CelticEgyptianRatscrewKata.Game;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -25,7 +26,9 @@ namespace ConsoleBasedGame.Tests
 
             // ASSERT
             _gameController.DidNotReceive().AttemptSnap(Arg.Any<IPlayer>());
-            _gameController.DidNotReceive().TakeTurn(Arg.Any<IPlayer>());
+            Card card;
+            _gameController.DidNotReceive().TakeTurn(Arg.Any<IPlayer>(), out card);
+            Card temp = card;
         }
 
         [Test]
@@ -39,7 +42,9 @@ namespace ConsoleBasedGame.Tests
 
             // ASSERT
             _gameController.DidNotReceive().AttemptSnap(Arg.Any<IPlayer>());
-            _gameController.DidNotReceive().TakeTurn(Arg.Any<IPlayer>());
+            Card card;
+            _gameController.DidNotReceive().TakeTurn(Arg.Any<IPlayer>(), out card);
+            Card temp = card;
         }
 
         [Test]
@@ -67,7 +72,9 @@ namespace ConsoleBasedGame.Tests
             _actionManager.Process(playerInfo.PlayCardKey);
 
             // ASSERT
-            _gameController.Received(1).TakeTurn(playerInfo);
+            Card card;
+            _gameController.Received(1).TakeTurn(playerInfo, out card);
+            Card temp = card;
         }
     }
 }

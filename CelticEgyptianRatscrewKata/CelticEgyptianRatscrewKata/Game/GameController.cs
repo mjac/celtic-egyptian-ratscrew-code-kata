@@ -58,19 +58,27 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public Card TakeTurn(IPlayer player)
         {
+            Card card;
+            TakeTurn(player, out card);
+
+            return card;
+        }
+
+        public bool TakeTurn(IPlayer player, out Card card)
+        {
             var playerIndex = _players.IndexOf(player);
 
             if (playerIndex != _expectedPlayerIndex)
             {
-                _gameState.FaultCard(player.Name);
+                card = _gameState.FaultCard(player.Name);
                 AddPenalty(player);
-                return null;
+                return false;
             }
 
-            var card = PlayCard(player);
+            card = PlayCard(player);
             UpdateNextExpectedPlayer(playerIndex);
 
-            return card;
+            return card != null;
         }
 
         private Card PlayCard(IPlayer player)

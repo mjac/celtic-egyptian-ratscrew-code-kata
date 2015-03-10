@@ -5,7 +5,6 @@ namespace CelticEgyptianRatscrewKata.Game
     public interface IGameController
     {
         bool AddPlayer(IPlayer player);
-        Card TakeTurn(IPlayer player);
         bool AttemptSnap(IPlayer player);
 
         /// <summary>
@@ -18,5 +17,6 @@ namespace CelticEgyptianRatscrewKata.Game
         int StackSize { get; }
         Card TopOfStack { get; }
         int NumberOfCards(IPlayer player);
+        bool TakeTurn(IPlayer player, out Card card);
     }
 }

@@ -28,18 +28,38 @@ namespace CelticEgyptianRatscrewKata.Tests
             gameController.AddPlayer(playerD);
             gameController.StartGame(deck);
 
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
-            gameController.TakeTurn(playerC);
-            gameController.TakeTurn(playerD);
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            Card card2;
+            gameController.TakeTurn(playerC, out card2);
+            Card temp2 = card2;
+            Card card3;
+            gameController.TakeTurn(playerD, out card3);
+            Card temp3 = card3;
+            Card card4;
+            gameController.TakeTurn(playerA, out card4);
+            Card temp4 = card4;
+            Card card5;
+            gameController.TakeTurn(playerB, out card5);
+            Card temp5 = card5;
             gameController.AttemptSnap(playerC);
 
-            gameController.TakeTurn(playerC);
-            gameController.TakeTurn(playerD);
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
+            Card card6;
+            gameController.TakeTurn(playerC, out card6);
+            Card temp6 = card6;
+            Card card7;
+            gameController.TakeTurn(playerD, out card7);
+            Card temp7 = card7;
+            Card card8;
+            gameController.TakeTurn(playerA, out card8);
+            Card temp8 = card8;
+            Card card9;
+            gameController.TakeTurn(playerB, out card9);
+            Card temp9 = card9;
             gameController.AttemptSnap(playerC);
 
             // Assert
@@ -67,12 +87,24 @@ namespace CelticEgyptianRatscrewKata.Tests
             gameController.AddPlayer(playerD);
             gameController.StartGame(deck);
 
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
-            gameController.TakeTurn(playerC);
-            gameController.TakeTurn(playerD);
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            Card card2;
+            gameController.TakeTurn(playerC, out card2);
+            Card temp2 = card2;
+            Card card3;
+            gameController.TakeTurn(playerD, out card3);
+            Card temp3 = card3;
+            Card card4;
+            gameController.TakeTurn(playerA, out card4);
+            Card temp4 = card4;
+            Card card5;
+            gameController.TakeTurn(playerB, out card5);
+            Card temp5 = card5;
             gameController.AttemptSnap(playerC);
 
             // Assert
@@ -99,9 +131,15 @@ namespace CelticEgyptianRatscrewKata.Tests
             gameController.AddPlayer(playerB);
             gameController.StartGame(deck);
 
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
-            gameController.TakeTurn(playerA);
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
+            Card card2;
+            gameController.TakeTurn(playerA, out card2);
+            Card temp2 = card2;
             gameController.AttemptSnap(playerA);
 
             // Assert
@@ -130,8 +168,12 @@ namespace CelticEgyptianRatscrewKata.Tests
             gameController.AddPlayer(playerB);
             gameController.StartGame(deck);
 
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
             var hasSnapped = gameController.AttemptSnap(playerA);
 
             // Assert
@@ -159,8 +201,12 @@ namespace CelticEgyptianRatscrewKata.Tests
             gameController.AddPlayer(playerB);
             gameController.StartGame(deck);
 
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
             gameController.AttemptSnap(playerA);
             gameController.AttemptSnap(playerB);
 
@@ -189,10 +235,16 @@ namespace CelticEgyptianRatscrewKata.Tests
             gameController.AddPlayer(playerB);
             gameController.StartGame(deck);
 
-            gameController.TakeTurn(playerA);
-            gameController.TakeTurn(playerB);
+            Card card;
+            gameController.TakeTurn(playerA, out card);
+            Card temp = card;
+            Card card1;
+            gameController.TakeTurn(playerB, out card1);
+            Card temp1 = card1;
             gameController.AttemptSnap(playerB);
-            gameController.TakeTurn(playerA);
+            Card card2;
+            gameController.TakeTurn(playerA, out card2);
+            Card temp2 = card2;
             var hasSnapped = gameController.AttemptSnap(playerB);
 
             // Assert
