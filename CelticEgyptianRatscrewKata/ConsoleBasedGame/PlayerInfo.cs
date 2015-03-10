@@ -2,9 +2,10 @@ using CelticEgyptianRatscrewKata.Game;
 
 namespace ConsoleBasedGame
 {
-    internal class PlayerInfo :IPlayer
+    internal class PlayerInfo : IPlayer
     {
         public string Name { get; private set; }
+        public bool HasPenalty { get; set; }
         public char PlayCardKey { get; private set; }
         public char SnapKey { get; private set; }
 
