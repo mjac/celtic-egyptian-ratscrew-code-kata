@@ -37,6 +37,11 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 _log.Log(string.Format("{0} {1}", player.Name, "received a penalty"));
             }
+            else if (!wasValidSnap)
+            {
+                _log.Log(string.Format("{0} {1}", player.Name, "received a penalty"));
+                _log.Log("All penalties were removed");
+            }
 
             LogGameState();
             return wasValidSnap;
