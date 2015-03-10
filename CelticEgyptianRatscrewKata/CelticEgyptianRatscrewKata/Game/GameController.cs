@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
 
@@ -76,6 +77,23 @@ namespace CelticEgyptianRatscrewKata.Game
                 }
 
                 player.HasPenalty = true;
+
+                bool everyoneHasAPenalty = true;
+                foreach (IPlayer t in _players)
+                {
+                    if (!t.HasPenalty)
+                    {
+                        everyoneHasAPenalty = false;
+                    }
+                }
+
+                if (everyoneHasAPenalty)
+                {
+                    foreach (IPlayer t in _players)
+                    {
+                        t.HasPenalty = false;
+                    }
+                }
             }
 
             return false;

@@ -140,6 +140,36 @@ namespace CelticEgyptianRatscrewKata.Tests
         }
 
         [Test]
+        public void BothSnapAtWrongTimeRemovesPenalties()
+        {
+            // Arrange
+            var gameController = CreateLoggedGameController();
+
+            var playerA = new Player("playerA");
+            var playerB = new Player("playerB");
+
+            var deck = Cards.With(
+                new Card(Suit.Clubs, Rank.Three),
+                new Card(Suit.Diamonds, Rank.Three),
+                new Card(Suit.Spades, Rank.Queen)
+                );
+
+            // Act
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.StartGame(deck);
+
+            gameController.PlayCard(playerA);
+            gameController.PlayCard(playerB);
+            gameController.AttemptSnap(playerA);
+            gameController.AttemptSnap(playerB);
+
+            // Assert
+            Assert.That(playerA.HasPenalty, Is.False);
+            Assert.That(playerB.HasPenalty, Is.False);
+        }
+
+        [Test]
         public void SnapWithPenaltyFails()
         {
             // Arrange
