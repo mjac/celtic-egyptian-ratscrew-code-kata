@@ -24,7 +24,7 @@ namespace CelticEgyptianRatscrewKata.Tests
         public void ReturnsTrueIfThereIsOneRuleAndItReturnsTrue()
         {
             //ARRANGE
-            var alwaysTrueRule = Substitute.For<ICardSnapRule>();
+            var alwaysTrueRule = Substitute.For<ISnapRule>();
             alwaysTrueRule.IsSnapValid(Arg.Any<Cards>()).Returns(true);
             var snapValidator = new SnapValidator(alwaysTrueRule);
 
@@ -44,7 +44,7 @@ namespace CelticEgyptianRatscrewKata.Tests
                 new Card(Suit.Clubs, Rank.Ace) 
             });
 
-            var alwaysTrueRule = Substitute.For<ICardSnapRule>();
+            var alwaysTrueRule = Substitute.For<ISnapRule>();
             alwaysTrueRule.IsSnapValid(Arg.Any<Cards>()).Returns(false);
             alwaysTrueRule.IsSnapValid(cardStack).Returns(true);
 

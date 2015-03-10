@@ -10,7 +10,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsFalseOnEmptyStack()
         {
             //ARRANGE
-            var sandwichSnapRule = new SandwichCardSnapRule();
+            var sandwichSnapRule = new SandwichSnapRule();
 
             //ACT
             var result = sandwichSnapRule.IsSnapValid(Cards.Empty());
@@ -23,7 +23,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsTrueForABasicSandwichWith3Cards()
         {
             //ARRANGE
-            var sandwichSnapRule = new SandwichCardSnapRule();
+            var sandwichSnapRule = new SandwichSnapRule();
             var cardStack = new Cards(new []
             {
                 new Card(Suit.Clubs, Rank.Ace), 
@@ -42,7 +42,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
         public void ReturnsTrueForABasicSandwichWith3CardsOfSameRank()
         {
             //ARRANGE
-            var sandwichSnapRule = new SandwichCardSnapRule();
+            var sandwichSnapRule = new SandwichSnapRule();
             var cardStack = new Cards(new []
             {
                 new Card(Suit.Clubs, Rank.Ace), 

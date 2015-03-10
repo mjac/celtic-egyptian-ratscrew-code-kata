@@ -8,12 +8,12 @@ namespace CelticEgyptianRatscrewKata.SnapRules
     /// </summary>
     public class SnapValidator : ISnapValidator
     {
-        private readonly IEnumerable<ICardSnapRule> _rules;
+        private readonly IEnumerable<ISnapRule> _rules;
 
         /// <summary>
         /// Create snap validator that will check against all the given <paramref name="rules"/>
         /// </summary>
-        public SnapValidator(params ICardSnapRule[] rules)
+        public SnapValidator(params ISnapRule[] rules)
         {
             _rules = rules;
         }

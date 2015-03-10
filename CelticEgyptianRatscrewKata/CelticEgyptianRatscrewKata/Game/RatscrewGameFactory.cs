@@ -7,11 +7,11 @@ namespace CelticEgyptianRatscrewKata.Game
     {
         public IGameController Create(ILog log)
         {
-            ICardSnapRule[] rules =
+            ISnapRule[] rules =
             {
-                new DarkQueenCardSnapRule(),
-                new SandwichCardSnapRule(),
-                new StandardCardSnapRule(),
+                new DarkQueenSnapRule(),
+                new SandwichSnapRule(),
+                new StandardSnapRule(),
             };
 
             var gameController = new GameController(new GameState(), new SnapValidator(rules), new Dealer(), new Shuffler());
