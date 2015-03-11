@@ -74,6 +74,7 @@ namespace CelticEgyptianRatscrewKata.Game
             }
             if (_gameState.HasCards(player.Name))
             {
+                _gameState.SetCurrentPlayer(_nextPlayerMapping[player.Name]);
                 return _gameState.PlayCard(player.Name);
             }
             return null;

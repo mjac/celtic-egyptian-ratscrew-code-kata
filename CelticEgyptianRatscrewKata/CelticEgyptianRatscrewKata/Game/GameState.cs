@@ -12,6 +12,7 @@ namespace CelticEgyptianRatscrewKata.Game
     {
         private readonly Cards _stack;
         private readonly IDictionary<string, Cards> _decks;
+        private string _currentPlayer;
 
         /// <summary>
         /// Default constructor.
@@ -91,6 +92,11 @@ namespace CelticEgyptianRatscrewKata.Game
         public bool IsCurrentPlayer(string name)
         {
             return true;
+        }
+
+        public void SetCurrentPlayer(string name)
+        {
+            _currentPlayer = name;
         }
 
         public void Clear()
