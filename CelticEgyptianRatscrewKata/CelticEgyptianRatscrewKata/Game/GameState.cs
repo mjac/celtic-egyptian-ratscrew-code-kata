@@ -91,7 +91,7 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public bool IsCurrentPlayer(string name)
         {
-            return true;
+            return _currentPlayer == name;
         }
 
         public void SetCurrentPlayer(string name)
