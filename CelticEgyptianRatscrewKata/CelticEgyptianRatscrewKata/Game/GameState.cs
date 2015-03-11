@@ -88,6 +88,11 @@ namespace CelticEgyptianRatscrewKata.Game
             return _decks[playerId].Count();
         }
 
+        public bool IsCurrentPlayer(string name)
+        {
+            return true;
+        }
+
         public void Clear()
         {
             ClearStack();
