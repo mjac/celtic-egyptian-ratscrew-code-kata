@@ -114,6 +114,8 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 _gameState.AddPlayer(_players[i].Name, decks[i]);
             }
+
+            _gameState.SetCurrentPlayer(_players.First().Name);
         }
 
         public bool TryGetWinner(out IPlayer winner)
