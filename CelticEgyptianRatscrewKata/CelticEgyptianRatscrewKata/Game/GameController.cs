@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
 
@@ -16,6 +17,7 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IList<IPlayer> _players;
         private readonly IGameState _gameState;
         private readonly IPenalties _penalties;
+        private Dictionary<string, string> _nextPlayerMapping = new Dictionary<string, string>();
 
         public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler, IPenalties penalties)
         {
@@ -56,6 +58,10 @@ namespace CelticEgyptianRatscrewKata.Game
 
             _penalties.AddPlayer(player);
 
+            _nextPlayerMapping = _players
+                .Zip(_players.Skip(1), Tuple.Create)
+                .Concat(new[] { Tuple.Create(_players.Last(), _players.First()) })
+                .ToDictionary(x => x.Item1.Name, x => x.Item2.Name);
             return true;
         }
 
