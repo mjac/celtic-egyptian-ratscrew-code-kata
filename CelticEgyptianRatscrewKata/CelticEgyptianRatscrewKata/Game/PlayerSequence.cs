@@ -21,9 +21,9 @@ namespace CelticEgyptianRatscrewKata.Game
             SetPlayerSequence(all.ToList());
         }
 
-        public void SetNextPlayer(string player)
+        public void SetNextPlayer()
         {
-            _currentPlayer = _nextPlayerMapping[player];
+            _currentPlayer = _nextPlayerMapping[_currentPlayer];
         }
 
         private void SetPlayerSequence(IList<string> players)
