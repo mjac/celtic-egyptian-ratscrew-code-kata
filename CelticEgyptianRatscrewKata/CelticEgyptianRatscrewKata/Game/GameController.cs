@@ -18,7 +18,7 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IPenalties _penalties;
         private readonly IPlayerSequence _playerSequence;
 
-        public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler, IPenalties penalties)
+        public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler, IPenalties penalties, IPlayerSequence playerSequence)
         {
             _players = new List<IPlayer>();
             _gameState = gameState;
@@ -26,7 +26,7 @@ namespace CelticEgyptianRatscrewKata.Game
             _dealer = dealer;
             _shuffler = shuffler;
             _penalties = penalties;
-            _playerSequence = new PlayerSequence();
+            _playerSequence = playerSequence;
         }
 
         public IEnumerable<IPlayer> Players
