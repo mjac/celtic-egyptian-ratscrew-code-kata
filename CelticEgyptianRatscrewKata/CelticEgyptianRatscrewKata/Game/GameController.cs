@@ -76,23 +76,6 @@ namespace CelticEgyptianRatscrewKata.Game
             return ExecuteSkipTurn();
         }
 
-        private static Card ExecuteSkipTurn()
-        {
-            return null;
-        }
-
-        private Card ExecutePlayCard(IPlayer player)
-        {
-            _playerSequence.AdvanceToNextPlayer();
-            return _gameState.PlayCard(player.Name);
-        }
-
-        private Card ExecutePlayCardOutOfTurn(IPlayer player)
-        {
-            _penalties.GivePenalty(player);
-            return null;
-        }
-
         public bool AttemptSnap(IPlayer player)
         {
             AddPlayer(player);
@@ -112,6 +95,23 @@ namespace CelticEgyptianRatscrewKata.Game
                 _penalties.GivePenalty(player);
             }
             return false;
+        }
+
+        private static Card ExecuteSkipTurn()
+        {
+            return null;
+        }
+
+        private Card ExecutePlayCard(IPlayer player)
+        {
+            _playerSequence.AdvanceToNextPlayer();
+            return _gameState.PlayCard(player.Name);
+        }
+
+        private Card ExecutePlayCardOutOfTurn(IPlayer player)
+        {
+            _penalties.GivePenalty(player);
+            return null;
         }
 
         /// <summary>
