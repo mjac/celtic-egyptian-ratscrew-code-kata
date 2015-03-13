@@ -19,7 +19,10 @@ namespace CelticEgyptianRatscrewKata.Game
         public void AdvanceToNextPlayer()
         {
             SetTheFirstPlayerIfItsNotAlreadyBeenDone();
-            _currentPlayer = _currentPlayer == null ? null : _nextPlayerMapping[_currentPlayer];
+            if (_currentPlayer != null)
+            {
+                _currentPlayer = _nextPlayerMapping[_currentPlayer];                
+            }
         }
 
         public bool IsCurrentPlayer(string name)
