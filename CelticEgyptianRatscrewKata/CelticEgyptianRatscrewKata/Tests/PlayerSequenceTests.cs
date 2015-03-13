@@ -41,5 +41,45 @@ namespace CelticEgyptianRatscrewKata.Tests
             Assert.That(playerSequence.IsCurrentPlayer(playerName), Is.True);
         }
 
+        [Test]
+        public void GivenPlayerSequenceWithTwoPlayers_FirstTurnShouldBelongToPlayer1()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName1 = "player1";
+            const string playerName2 = "player2";
+            playerSequence.AddPlayer(playerName1);
+            playerSequence.AddPlayer(playerName2);
+
+            Assert.That(playerSequence.IsCurrentPlayer(playerName1), Is.True);
+        }
+
+        [Test]
+        public void GivenPlayerSequenceWithTwoPlayers_SecondTurnShouldBelongToPlayer2()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName1 = "player1";
+            const string playerName2 = "player2";
+            playerSequence.AddPlayer(playerName1);
+            playerSequence.AddPlayer(playerName2);
+
+            playerSequence.AdvanceToNextPlayer();
+
+            Assert.That(playerSequence.IsCurrentPlayer(playerName2), Is.True);
+        }
+
+        [Test]
+        public void GivenPlayerSequenceWithTwoPlayers_ThirdTurnShouldBelongToPlayer1()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName1 = "player1";
+            const string playerName2 = "player2";
+            playerSequence.AddPlayer(playerName1);
+            playerSequence.AddPlayer(playerName2);
+
+            playerSequence.AdvanceToNextPlayer();
+            playerSequence.AdvanceToNextPlayer();
+
+            Assert.That(playerSequence.IsCurrentPlayer(playerName1), Is.True);
+        }
     }
 }
