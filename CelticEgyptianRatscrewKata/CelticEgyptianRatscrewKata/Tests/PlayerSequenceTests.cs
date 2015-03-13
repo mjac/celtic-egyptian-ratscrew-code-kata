@@ -81,5 +81,21 @@ namespace CelticEgyptianRatscrewKata.Tests
 
             Assert.That(playerSequence.IsCurrentPlayer(playerName1), Is.True);
         }
+
+        [Test]
+        public void GivenPlayerSequenceWithTwoPlayers_CallingCurrentPlayer_ShouldNotChangeWhoseTurnComesSecond()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName1 = "player1";
+            const string playerName2 = "player2";
+            playerSequence.AddPlayer(playerName1);
+            playerSequence.AddPlayer(playerName2);
+
+            playerSequence.IsCurrentPlayer("notAPlayer");
+            playerSequence.AdvanceToNextPlayer();
+
+            Assert.That(playerSequence.IsCurrentPlayer(playerName2), Is.True);
+        }
+
     }
 }
