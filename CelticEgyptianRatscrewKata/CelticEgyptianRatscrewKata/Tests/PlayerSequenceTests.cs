@@ -139,7 +139,7 @@ namespace CelticEgyptianRatscrewKata.Tests
         }
 
         [Test]
-        public void GivenTwoPlayerSequenceOnTurnFour_WhenAThirdPlayerIsAdded_FifthTurnShouldBelongToPlayer3()
+        public void GivenTwoPlayerSequenceOnTurnThree_WhenAThirdPlayerIsAdded_FifthTurnShouldBelongToPlayer3()
         {
             var playerSequence = new PlayerSequence();
             const string playerName1 = "player1";
@@ -150,10 +150,10 @@ namespace CelticEgyptianRatscrewKata.Tests
 
             playerSequence.AdvanceToNextPlayer();
             playerSequence.AdvanceToNextPlayer();
-            playerSequence.AdvanceToNextPlayer();
 
             playerSequence.AddPlayer(playerName3);
 
+            playerSequence.AdvanceToNextPlayer();
             playerSequence.AdvanceToNextPlayer();
             Assert.That(playerSequence.IsCurrentPlayer(playerName3), Is.True);
         }
