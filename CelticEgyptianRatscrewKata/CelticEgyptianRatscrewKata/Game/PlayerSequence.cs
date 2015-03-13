@@ -7,17 +7,12 @@ namespace CelticEgyptianRatscrewKata.Game
     public class PlayerSequence
     {
         private Dictionary<string, string> _nextPlayerMapping = new Dictionary<string, string>();
-        private string _currentPlayer;
 
         public PlayerSequence()
         {
         }
 
-        public string CurrentPlayer
-        {
-            get { return _currentPlayer; }
-            set { _currentPlayer = value; }
-        }
+        public string CurrentPlayer { get; set; }
 
         public void SetPlayerSequence(IList<IPlayer> players)
         {
