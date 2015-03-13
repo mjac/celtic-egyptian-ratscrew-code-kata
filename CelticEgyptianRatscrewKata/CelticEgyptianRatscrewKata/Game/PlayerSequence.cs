@@ -9,10 +9,6 @@ namespace CelticEgyptianRatscrewKata.Game
         private Dictionary<string, string> _nextPlayerMapping = new Dictionary<string, string>();
         private string _currentPlayer;
 
-        public PlayerSequence()
-        {
-        }
-
         public string CurrentPlayer
         {
             get { return _currentPlayer ?? (_currentPlayer = _nextPlayerMapping.Keys.First()); }
