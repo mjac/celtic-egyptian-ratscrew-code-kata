@@ -23,7 +23,7 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public bool IsCurrentPlayer(string name)
         {
-            var currentPlayer = _currentPlayer ?? (_currentPlayer = _nextPlayerMapping.Keys.First());
+            var currentPlayer = _currentPlayer ?? (_currentPlayer = _nextPlayerMapping.Keys.FirstOrDefault());
             return currentPlayer == name;
         }
 

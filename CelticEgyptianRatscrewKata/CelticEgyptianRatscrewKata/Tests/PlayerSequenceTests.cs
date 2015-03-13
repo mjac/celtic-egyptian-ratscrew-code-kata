@@ -12,5 +12,11 @@ namespace CelticEgyptianRatscrewKata.Tests
             Assert.DoesNotThrow(() => playerSequence.AdvanceToNextPlayer());
         }
 
+        [Test]
+        public void GivenEmptyPlayerSequence_IsCurrentPlayer_ShouldReturnFalse()
+        {
+            var playerSequence = new PlayerSequence();
+            Assert.That(playerSequence.IsCurrentPlayer("me"), Is.False);            
+        }
     }
 }
