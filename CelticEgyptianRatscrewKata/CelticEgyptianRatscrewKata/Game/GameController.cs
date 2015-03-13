@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CelticEgyptianRatscrewKata.GameSetup;
@@ -70,17 +71,17 @@ namespace CelticEgyptianRatscrewKata.Game
             }
             if (_gameState.HasCards(player.Name))
             {
-                return ExecutePlayValidCard(player);
+                return ExecutePlayCard(player);
             }
-            return ExecutePlayCardWithEmptyHand();
+            return ExecuteSkipTurn();
         }
 
-        private static Card ExecutePlayCardWithEmptyHand()
+        private static Card ExecuteSkipTurn()
         {
             return null;
         }
 
-        private Card ExecutePlayValidCard(IPlayer player)
+        private Card ExecutePlayCard(IPlayer player)
         {
             _playerSequence.AdvanceToNextPlayer();
             return _gameState.PlayCard(player.Name);
