@@ -52,6 +52,7 @@
     <Compile Include="Game\LoggedGameController.cs" />
     <Compile Include="Game\LoggedPenalties.cs" />
     <Compile Include="Game\Penalties.cs" />
+    <Compile Include="Game\PlayerSequence.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="SnapRules\DarkQueenSnapRule.cs" />
     <Compile Include="GameSetup\Dealer.cs" />

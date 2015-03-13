@@ -17,7 +17,7 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IList<IPlayer> _players;
         private readonly IGameState _gameState;
         private readonly IPenalties _penalties;
-        private Dictionary<string, string> _nextPlayerMapping = new Dictionary<string, string>();
+        private readonly PlayerSequence _playerSequence;
 
         public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler, IPenalties penalties)
         {
@@ -27,6 +27,7 @@ namespace CelticEgyptianRatscrewKata.Game
             _dealer = dealer;
             _shuffler = shuffler;
             _penalties = penalties;
+            _playerSequence = new PlayerSequence();
         }
 
         public IEnumerable<IPlayer> Players
@@ -58,23 +59,20 @@ namespace CelticEgyptianRatscrewKata.Game
 
             _penalties.AddPlayer(player);
 
-            _nextPlayerMapping = _players
-                .Zip(_players.Skip(1), Tuple.Create)
-                .Concat(new[] { Tuple.Create(_players.Last(), _players.First()) })
-                .ToDictionary(x => x.Item1.Name, x => x.Item2.Name);
+            _playerSequence.SetPlayerSequence(_players);
             return true;
         }
 
         public Card PlayCard(IPlayer player)
         {
-            if (!_gameState.IsCurrentPlayer(player.Name))
+            if (_playerSequence.CurrentPlayer != player.Name)
             {
                 _penalties.GivePenalty(player);
                 return null;
             }
             if (_gameState.HasCards(player.Name))
             {
-                _gameState.SetCurrentPlayer(_nextPlayerMapping[player.Name]);
+                _playerSequence.SetNextPlayer(player);
                 return _gameState.PlayCard(player.Name);
             }
             return null;
@@ -115,7 +113,7 @@ namespace CelticEgyptianRatscrewKata.Game
                 _gameState.AddPlayer(_players[i].Name, decks[i]);
             }
 
-            _gameState.SetCurrentPlayer(_players.First().Name);
+            _playerSequence.CurrentPlayer = _players.First().Name;
         }
 
         public bool TryGetWinner(out IPlayer winner)

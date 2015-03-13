@@ -12,7 +12,6 @@ namespace CelticEgyptianRatscrewKata.Game
     {
         private readonly Cards _stack;
         private readonly IDictionary<string, Cards> _decks;
-        private string _currentPlayer;
 
         /// <summary>
         /// Default constructor.
@@ -87,16 +86,6 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             if (!_decks.ContainsKey(playerId)) throw new ArgumentException("The selected player doesn't exist");
             return _decks[playerId].Count();
-        }
-
-        public bool IsCurrentPlayer(string name)
-        {
-            return _currentPlayer == name;
-        }
-
-        public void SetCurrentPlayer(string name)
-        {
-            _currentPlayer = name;
         }
 
         public void Clear()

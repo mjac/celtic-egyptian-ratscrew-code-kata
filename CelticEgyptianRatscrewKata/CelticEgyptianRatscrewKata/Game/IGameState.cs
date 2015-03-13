@@ -36,15 +36,5 @@ namespace CelticEgyptianRatscrewKata.Game
         void Clear();
 
         int NumberOfCards(string name);
-
-        /// <summary>
-        /// Returns true if the player passed is the player to play next
-        /// </summary>
-        bool IsCurrentPlayer(string name);
-
-        /// <summary>
-        /// Set the current player to the given name
-        /// </summary>
-        void SetCurrentPlayer(string name);
     }
 }
