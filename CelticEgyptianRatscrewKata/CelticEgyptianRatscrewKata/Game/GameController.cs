@@ -82,7 +82,7 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             if (!_playerSequence.IsCurrentPlayer(player.Name))
             {
-                return ExecutePlayCardOutOfTurn(player);
+                return ExecuteAttemptToPlayOutOfTurn(player);
             }
             if (_gameState.HasCards(player.Name))
             {
@@ -148,7 +148,7 @@ namespace CelticEgyptianRatscrewKata.Game
             return _gameState.PlayCard(player.Name);
         }
 
-        private Card ExecutePlayCardOutOfTurn(IPlayer player)
+        private Card ExecuteAttemptToPlayOutOfTurn(IPlayer player)
         {
             _penalties.GivePenalty(player);
             return null;
