@@ -59,7 +59,7 @@ namespace CelticEgyptianRatscrewKata.Game
 
             _penalties.AddPlayer(player);
 
-            _playerSequence.SetPlayerSequence(_players);
+            _playerSequence.SetPlayerSequence(_players.Select(p => p.Name).ToList());
             return true;
         }
 
@@ -72,7 +72,7 @@ namespace CelticEgyptianRatscrewKata.Game
             }
             if (_gameState.HasCards(player.Name))
             {
-                _playerSequence.SetNextPlayer(player);
+                _playerSequence.SetNextPlayer(player.Name);
                 return _gameState.PlayCard(player.Name);
             }
             return null;
