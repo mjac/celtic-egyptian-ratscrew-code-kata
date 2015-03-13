@@ -20,7 +20,7 @@ namespace CelticEgyptianRatscrewKata.Tests
         }
 
         [Test]
-        public void GivenPlayerSequenceWithOnePlayer_FirstPlayerShouldBePlayer()
+        public void GivenPlayerSequenceWithOnePlayer_FirstTurnShouldBelongToPlayer()
         {
             var playerSequence = new PlayerSequence();
             const string playerName = "me";
@@ -30,7 +30,7 @@ namespace CelticEgyptianRatscrewKata.Tests
         }
 
         [Test]
-        public void GivenPlayerSequenceWithOnePlayer_SecondPlayerShouldBePlayer()
+        public void GivenPlayerSequenceWithOnePlayer_SecondTurnShouldBelongToPlayer()
         {
             var playerSequence = new PlayerSequence();
             const string playerName = "me";
