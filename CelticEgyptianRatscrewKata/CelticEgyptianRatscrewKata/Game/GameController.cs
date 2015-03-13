@@ -93,7 +93,6 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public bool AttemptSnap(IPlayer player)
         {
-            AddPlayer(player);
             if (_penalties.HasPenalty(player))
             {
                 return ExecuteNoSnap();
