@@ -49,6 +49,7 @@
     <Compile Include="Game\IGameController.cs" />
     <Compile Include="Game\IGameFactory.cs" />
     <Compile Include="Game\IPenalties.cs" />
+    <Compile Include="Game\IPlayerSequence.cs" />
     <Compile Include="Game\LoggedGameController.cs" />
     <Compile Include="Game\LoggedPenalties.cs" />
     <Compile Include="Game\Penalties.cs" />

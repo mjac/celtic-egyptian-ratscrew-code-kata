@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
-    public class PlayerSequence
+    public class PlayerSequence : IPlayerSequence
     {
         private Dictionary<string, string> _nextPlayerMapping = new Dictionary<string, string>();
         private string _currentPlayer;

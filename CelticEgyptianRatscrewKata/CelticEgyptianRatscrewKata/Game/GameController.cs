@@ -16,7 +16,7 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IList<IPlayer> _players;
         private readonly IGameState _gameState;
         private readonly IPenalties _penalties;
-        private readonly PlayerSequence _playerSequence;
+        private readonly IPlayerSequence _playerSequence;
 
         public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler, IPenalties penalties)
         {
