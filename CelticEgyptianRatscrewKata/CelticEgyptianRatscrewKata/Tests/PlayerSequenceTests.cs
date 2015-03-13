@@ -18,5 +18,28 @@ namespace CelticEgyptianRatscrewKata.Tests
             var playerSequence = new PlayerSequence();
             Assert.That(playerSequence.IsCurrentPlayer("me"), Is.False);            
         }
+
+        [Test]
+        public void GivenPlayerSequenceWithOnePlayer_FirstPlayerShouldBePlayer()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName = "me";
+            playerSequence.AddPlayer(playerName);
+
+            Assert.That(playerSequence.IsCurrentPlayer(playerName), Is.True);
+        }
+
+        [Test]
+        public void GivenPlayerSequenceWithOnePlayer_SecondPlayerShouldBePlayer()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName = "me";
+            playerSequence.AddPlayer(playerName);
+
+            playerSequence.AdvanceToNextPlayer();
+
+            Assert.That(playerSequence.IsCurrentPlayer(playerName), Is.True);
+        }
+
     }
 }
