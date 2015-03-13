@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using CelticEgyptianRatscrewKata.Game;
+﻿using CelticEgyptianRatscrewKata.Game;
 using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
 using NSubstitute;
@@ -9,6 +8,35 @@ namespace CelticEgyptianRatscrewKata.Tests
 {
     public class GameControllerTests
     {
+        [Test]
+        public void ShouldApplyPenaltyIfPlayerPlaysOutOfTurn()
+        {
+            // Arrange
+            var playerSequence = Substitute.For<IPlayerSequence>();
+            playerSequence.IsCurrentPlayer(Arg.Any<string>()).Returns(false);
+
+            var penalties = Substitute.For<IPenalties>();
+
+            var gameController = new GameController(
+                new GameState(), 
+                Substitute.For<ISnapValidator>(), 
+                new Dealer(), 
+                new NoneShufflingShuffler(), 
+                penalties, 
+                playerSequence);
+
+            var playerA = new Player("playerA");
+            gameController.AddPlayer(playerA);
+
+            // Act
+            gameController.StartGame(CreateNewSimpleDeck());
+            gameController.PlayCard(playerA);
+            
+            // Assert
+            penalties.Received().GivePenalty(playerA);
+
+        }
+
         [Test]
         public void RedRouteWinnerAfterSomeRoundsOfPlay()
         {
