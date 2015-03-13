@@ -50,6 +50,21 @@ namespace CelticEgyptianRatscrewKata.Game
             return _gameState.NumberOfCards(player.Name);
         }
 
+        /// <summary>
+        /// Starts a game with the currently added players
+        /// </summary>
+        public void StartGame(Cards deck)
+        {
+            _gameState.Clear();
+
+            var shuffledDeck = _shuffler.Shuffle(deck);
+            var decks = _dealer.Deal(_players.Count, shuffledDeck);
+            for (var i = 0; i < decks.Count; i++)
+            {
+                _gameState.AddPlayer(_players[i].Name, decks[i]);
+            }
+        }
+
         public bool AddPlayer(IPlayer player)
         {
             if (Players.Any(x => x.Name == player.Name)) return false;
@@ -90,6 +105,20 @@ namespace CelticEgyptianRatscrewKata.Game
             return ExecuteInvalidSnap(player);
         }
 
+        public bool TryGetWinner(out IPlayer winner)
+        {
+            var playersWithCards = _players.Where(p => _gameState.HasCards(p.Name)).ToList();
+
+            if (!_gameState.Stack.Any() && playersWithCards.Count() == 1)
+            {
+                winner = playersWithCards.Single();
+                return true;
+            }
+
+            winner = null;
+            return false;
+        }
+
         private bool ExecuteInvalidSnap(IPlayer player)
         {
             _penalties.GivePenalty(player);
@@ -123,35 +152,6 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             _penalties.GivePenalty(player);
             return null;
-        }
-
-        /// <summary>
-        /// Starts a game with the currently added players
-        /// </summary>
-        public void StartGame(Cards deck)
-        {
-            _gameState.Clear();
-
-            var shuffledDeck = _shuffler.Shuffle(deck);
-            var decks = _dealer.Deal(_players.Count, shuffledDeck);
-            for (var i = 0; i < decks.Count; i++)
-            {
-                _gameState.AddPlayer(_players[i].Name, decks[i]);
-            }
-        }
-
-        public bool TryGetWinner(out IPlayer winner)
-        {
-            var playersWithCards = _players.Where(p => _gameState.HasCards(p.Name)).ToList();
-
-            if (!_gameState.Stack.Any() && playersWithCards.Count() == 1)
-            {
-                winner = playersWithCards.Single();
-                return true;
-            }
-
-            winner = null;
-            return false;
         }
     }
 }
