@@ -14,17 +14,24 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public string CurrentPlayer { get; set; }
 
-        public void SetPlayerSequence(IList<string> players)
+        public void AddPlayer(string name)
         {
-            _nextPlayerMapping = players
-                .Zip(players.Skip(1), Tuple.Create)
-                .Concat(new[] {Tuple.Create(players.Last(), players.First())})
-                .ToDictionary(x => x.Item1, x => x.Item2);
+            var alreadyPlaying = _nextPlayerMapping.Keys;
+            var all = alreadyPlaying.Concat(new[] { name });
+            SetPlayerSequence(all.ToList());
         }
 
         public void SetNextPlayer(string player)
         {
             CurrentPlayer = _nextPlayerMapping[player];
+        }
+
+        private void SetPlayerSequence(IList<string> players)
+        {
+            _nextPlayerMapping = players
+                .Zip(players.Skip(1), Tuple.Create)
+                .Concat(new[] {Tuple.Create(players.Last(), players.First())})
+                .ToDictionary(x => x.Item1, x => x.Item2);
         }
     }
 

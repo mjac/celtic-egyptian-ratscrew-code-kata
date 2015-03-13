@@ -58,8 +58,8 @@ namespace CelticEgyptianRatscrewKata.Game
             _gameState.AddPlayer(player.Name, Cards.Empty());
 
             _penalties.AddPlayer(player);
+            _playerSequence.AddPlayer(player.Name);
 
-            _playerSequence.SetPlayerSequence(_players.Select(p => p.Name).ToList());
             return true;
         }
 
