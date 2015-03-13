@@ -66,14 +66,29 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             if (!_playerSequence.IsCurrentPlayer(player.Name))
             {
-                _penalties.GivePenalty(player);
-                return null;
+                return ExecutePlayCardOutOfTurn(player);
             }
             if (_gameState.HasCards(player.Name))
             {
-                _playerSequence.AdvanceToNextPlayer();
-                return _gameState.PlayCard(player.Name);
+                return ExecutePlayValidCard(player);
             }
+            return ExecutePlayCardWithEmptyHand();
+        }
+
+        private static Card ExecutePlayCardWithEmptyHand()
+        {
+            return null;
+        }
+
+        private Card ExecutePlayValidCard(IPlayer player)
+        {
+            _playerSequence.AdvanceToNextPlayer();
+            return _gameState.PlayCard(player.Name);
+        }
+
+        private Card ExecutePlayCardOutOfTurn(IPlayer player)
+        {
+            _penalties.GivePenalty(player);
             return null;
         }
 
