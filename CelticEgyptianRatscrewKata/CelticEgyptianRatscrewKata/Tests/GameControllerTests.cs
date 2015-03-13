@@ -87,7 +87,7 @@ namespace CelticEgyptianRatscrewKata.Tests
             var dealer = new Dealer();
             var noneShufflingShuffler = new NoneShufflingShuffler();
 
-            return new GameController(gameState, completeSnapValidator, dealer, noneShufflingShuffler, Substitute.For<IPenalties>(), new PlayerSequence());
+            return new GameController(gameState, completeSnapValidator, dealer, noneShufflingShuffler, Substitute.For<IPenalties>(), new LaxPlayerSequence());
         }
 
         private static ISnapValidator CreateCompleteSnapValidator()
@@ -123,6 +123,22 @@ namespace CelticEgyptianRatscrewKata.Tests
         public Cards Shuffle(Cards deck)
         {
             return new Cards(deck);
+        }
+    }
+
+    public class LaxPlayerSequence : IPlayerSequence
+    {
+        public void AddPlayer(string name)
+        {
+        }
+
+        public void AdvanceToNextPlayer()
+        {
+        }
+
+        public bool IsCurrentPlayer(string name)
+        {
+            return true;
         }
     }
 }
