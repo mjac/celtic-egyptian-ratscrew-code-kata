@@ -97,5 +97,65 @@ namespace CelticEgyptianRatscrewKata.Tests
             Assert.That(playerSequence.IsCurrentPlayer(playerName2), Is.True);
         }
 
+
+        [Test]
+        public void GivenTwoPlayerSequenceOnTurnFour_WhenAThirdPlayerIsAdded_TheFourthTurnShouldBelongToPlayer2()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName1 = "player1";
+            const string playerName2 = "player2";
+            const string playerName3 = "player3";
+            playerSequence.AddPlayer(playerName1);
+            playerSequence.AddPlayer(playerName2);
+
+            playerSequence.AdvanceToNextPlayer();
+            playerSequence.AdvanceToNextPlayer();
+            playerSequence.AdvanceToNextPlayer();
+
+            playerSequence.AddPlayer(playerName3);
+
+            Assert.That(playerSequence.IsCurrentPlayer(playerName2), Is.True);
+        }
+
+
+        [Test]
+        public void GivenTwoPlayerSequenceOnTurnFive_WhenAThirdPlayerIsAdded_TheFifthTurnShouldBelongToPlayer1()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName1 = "player1";
+            const string playerName2 = "player2";
+            const string playerName3 = "player3";
+            playerSequence.AddPlayer(playerName1);
+            playerSequence.AddPlayer(playerName2);
+
+            playerSequence.AdvanceToNextPlayer();
+            playerSequence.AdvanceToNextPlayer();
+            playerSequence.AdvanceToNextPlayer();
+            playerSequence.AdvanceToNextPlayer();
+
+            playerSequence.AddPlayer(playerName3);
+
+            Assert.That(playerSequence.IsCurrentPlayer(playerName1), Is.True);
+        }
+
+        [Test]
+        public void GivenTwoPlayerSequenceOnTurnFour_WhenAThirdPlayerIsAdded_FifthTurnShouldBelongToPlayer3()
+        {
+            var playerSequence = new PlayerSequence();
+            const string playerName1 = "player1";
+            const string playerName2 = "player2";
+            const string playerName3 = "player3";
+            playerSequence.AddPlayer(playerName1);
+            playerSequence.AddPlayer(playerName2);
+
+            playerSequence.AdvanceToNextPlayer();
+            playerSequence.AdvanceToNextPlayer();
+            playerSequence.AdvanceToNextPlayer();
+
+            playerSequence.AddPlayer(playerName3);
+
+            playerSequence.AdvanceToNextPlayer();
+            Assert.That(playerSequence.IsCurrentPlayer(playerName3), Is.True);
+        }
     }
 }
