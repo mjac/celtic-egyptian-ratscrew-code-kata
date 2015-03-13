@@ -18,7 +18,7 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public void AdvanceToNextPlayer()
         {
-            _currentPlayer = _nextPlayerMapping[_currentPlayer];
+            _currentPlayer = _currentPlayer == null ? null : _nextPlayerMapping[_currentPlayer];
         }
 
         public bool IsCurrentPlayer(string name)
