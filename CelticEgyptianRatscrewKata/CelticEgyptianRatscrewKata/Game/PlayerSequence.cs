@@ -7,12 +7,16 @@ namespace CelticEgyptianRatscrewKata.Game
     public class PlayerSequence
     {
         private Dictionary<string, string> _nextPlayerMapping = new Dictionary<string, string>();
+        private string _currentPlayer;
 
         public PlayerSequence()
         {
         }
 
-        public string CurrentPlayer { get; set; }
+        public string CurrentPlayer
+        {
+            get { return _currentPlayer ?? (_currentPlayer = _nextPlayerMapping.Keys.First()); }
+        }
 
         public void AddPlayer(string name)
         {
@@ -23,7 +27,7 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public void SetNextPlayer(string player)
         {
-            CurrentPlayer = _nextPlayerMapping[player];
+            _currentPlayer = _nextPlayerMapping[player];
         }
 
         private void SetPlayerSequence(IList<string> players)
