@@ -1,51 +1,29 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
     public class PlayerSequence : IPlayerSequence
     {
-        private Dictionary<string, string> _nextPlayerMapping = new Dictionary<string, string>();
-        private string _currentPlayer;
+        private readonly Queue<string> _playerSequence = new Queue<string>();
 
         public void AddPlayer(string name)
         {
-            var alreadyPlaying = _nextPlayerMapping.Keys;
-            var all = alreadyPlaying.Concat(new[] { name });
-            SetPlayerSequence(all.ToList());
+            _playerSequence.Enqueue(name); 
         }
 
         public void AdvanceToNextPlayer()
         {
-            SetTheFirstPlayerIfItsNotAlreadyBeenDone();
-            if (_currentPlayer != null)
+            if (_playerSequence.Count > 0)
             {
-                _currentPlayer = _nextPlayerMapping[_currentPlayer];                
+                _playerSequence.Enqueue(_playerSequence.Dequeue());
             }
         }
 
         public bool IsCurrentPlayer(string name)
         {
-            SetTheFirstPlayerIfItsNotAlreadyBeenDone();
-            return _currentPlayer == name;
+            return _playerSequence.Count > 0 && _playerSequence.Peek() == name;
         }
 
-        private void SetTheFirstPlayerIfItsNotAlreadyBeenDone()
-        {
-            if (_currentPlayer == null && _nextPlayerMapping.Count > 0)
-            {
-                _currentPlayer = _nextPlayerMapping.Keys.First();
-            }
-        }
-
-        private void SetPlayerSequence(IList<string> players)
-        {
-            _nextPlayerMapping = players
-                .Zip(players.Skip(1), Tuple.Create)
-                .Concat(new[] {Tuple.Create(players.Last(), players.First())})
-                .ToDictionary(x => x.Item1, x => x.Item2);
-        }
     }
 
 }
