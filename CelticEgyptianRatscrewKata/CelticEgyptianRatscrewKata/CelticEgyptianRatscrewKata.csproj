@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallingOut\CallOutSnapRule.cs" />
+    <Compile Include="CallingOut\ICalledRankProvider.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Game\IGameController.cs" />
     <Compile Include="Game\IGameFactory.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="SnapRules\ISnapValidator.cs" />
     <Compile Include="SnapRules\SnapValidator.cs" />
     <Compile Include="SnapRules\StandardSnapRule.cs" />
+    <Compile Include="Tests\CallingOutTests\CallOutSnapRuleTests.cs" />
     <Compile Include="Tests\EndToEndPenaltyTests.cs" />
     <Compile Include="Tests\PlayerSequenceTests.cs" />
     <Compile Include="Tests\SnapRules\DarkQueenRuleTests.cs" />
