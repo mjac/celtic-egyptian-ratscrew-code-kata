@@ -8,7 +8,10 @@ namespace CelticEgyptianRatscrewKata.Game
     {
         public IGameController Create(ILog log)
         {
-            var callOutRank = new CallOutRank();
+            var playerSequence = new PlayerSequence();
+            var callOutRank = new CallOutRank(Rank.Ace);
+
+            var callingOutPlayerSequence = new PlayerSequenceWithCallingOut(playerSequence, callOutRank);
 
             ISnapRule[] rules =
             {
@@ -20,7 +23,7 @@ namespace CelticEgyptianRatscrewKata.Game
 
             var penalties = new Penalties();
             var loggedPenalties = new LoggedPenalties(penalties, log);
-            var gameController = new GameController(new GameState(), new SnapValidator(rules), new Dealer(), new Shuffler(), loggedPenalties, new PlayerSequence());
+            var gameController = new GameController(new GameState(), new SnapValidator(rules), new Dealer(), new Shuffler(), loggedPenalties, callingOutPlayerSequence);
             return new LoggedGameController(gameController, log);
         }
     }
