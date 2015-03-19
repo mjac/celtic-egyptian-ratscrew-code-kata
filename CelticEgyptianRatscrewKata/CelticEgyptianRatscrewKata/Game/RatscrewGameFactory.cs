@@ -24,7 +24,9 @@ namespace CelticEgyptianRatscrewKata.Game
             var penalties = new Penalties();
             var loggedPenalties = new LoggedPenalties(penalties, log);
             var gameController = new GameController(new GameState(), new SnapValidator(rules), new Dealer(), new Shuffler(), loggedPenalties, callingOutPlayerSequence);
-            return new LoggedGameController(gameController, log);
+            var loggedGameController = new LoggedGameController(gameController, log);
+
+            return new CallOutLoggedGameController(callOutRank, loggedGameController, log);
         }
     }
 }

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallingOut\CallOutLoggedGameController.cs" />
     <Compile Include="CallingOut\CallOutRank.cs" />
     <Compile Include="CallingOut\CallOutSnapRule.cs" />
     <Compile Include="CallingOut\ICalledRankProvider.cs" />
