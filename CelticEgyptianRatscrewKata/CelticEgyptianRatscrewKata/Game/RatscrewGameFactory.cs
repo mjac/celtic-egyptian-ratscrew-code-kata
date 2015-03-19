@@ -1,4 +1,5 @@
-﻿using CelticEgyptianRatscrewKata.GameSetup;
+﻿using CelticEgyptianRatscrewKata.CallingOut;
+using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
 
 namespace CelticEgyptianRatscrewKata.Game
@@ -7,11 +8,14 @@ namespace CelticEgyptianRatscrewKata.Game
     {
         public IGameController Create(ILog log)
         {
+            var callOutRank = new CallOutRank();
+
             ISnapRule[] rules =
             {
                 new DarkQueenSnapRule(),
                 new SandwichSnapRule(),
                 new StandardSnapRule(),
+                new CallOutSnapRule(callOutRank), 
             };
 
             var penalties = new Penalties();
